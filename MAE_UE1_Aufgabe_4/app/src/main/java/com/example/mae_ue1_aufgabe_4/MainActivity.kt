@@ -28,8 +28,6 @@ class MainActivity : AppCompatActivity() {
         val buttonMinus = findViewById<View>(R.id.buttonMinus) as Button
         val buttonMulti = findViewById<View>(R.id.buttonMulti) as Button
         val buttonDivision = findViewById<View>(R.id.buttonDivision) as Button
-        val buttonPleft = findViewById<View>(R.id.buttonPleft) as Button
-        val buttonPright = findViewById<View>(R.id.buttonPright) as Button
         val buttonCalc = findViewById<View>(R.id.buttonCalc) as Button
         val buttonDel= findViewById<View>(R.id.buttonDel) as Button
         val buttonClr = findViewById<View>(R.id.buttonClr) as Button
@@ -51,6 +49,7 @@ class MainActivity : AppCompatActivity() {
             numbers.clear()
             operators.clear()
             error = false
+            calculated = false
         }
 
         // using to enter a number
@@ -86,6 +85,12 @@ class MainActivity : AppCompatActivity() {
                 textViewFormula.setText(textViewResult.text)
                 textViewResult.setText("")
                 calculated = false
+            }
+            // allow minus to set negative numbers
+            if(textViewFormula.text.isEmpty() && c == '-') {
+                textViewFormula.append(c.toString())
+                numString += c.toString()
+                lastCharOperator = true
             }
             if(!lastCharOperator && numString != "") {
                 pushNum()
@@ -138,16 +143,11 @@ class MainActivity : AppCompatActivity() {
                         operators.removeAt(i-1)
                     }
                     else i++
-                    println(operators)
-                    println(numbers)
                 }
                 var res = numbers[0]
                 // now do lesser priority calculations
                 for (i in 1 until numbers.size) {
                     res = calcNum(res, numbers[i], operators[i-1])
-                    println(operators)
-                    println(numbers)
-                    println(res)
                 }
                 return res
             }
@@ -224,9 +224,11 @@ class MainActivity : AppCompatActivity() {
                 if(!error) {
                     var s = res.split('.')
                     if(s.size > 1 && s[1] != "0") {
+                        textViewFormula.append(" =")
                         textViewResult.setText(res)
                     }
                     else {
+                        textViewFormula.append(" =")
                         textViewResult.setText(s[0])
                     }
                     calculated = true
