@@ -128,23 +128,28 @@ class MainActivity : AppCompatActivity() {
             }
 
             if(numbers.size > 1) {
-                var n = 0.0
-                for (i in 1 until numbers.size) {
+                var i = 1
+                // do higher priority calculations first
+                while (i < numbers.size) {
                     if(operators[i-1] == 'x' || operators[i-1] == '/') {
-                        if(n == 0.0) n = numbers[i-1]
-                        n = calcNum(n, numbers[i], operators[i - 1])
-                        operators.drop(i-1)
-                        numbers.drop(i)
+                        var n = calcNum(numbers[i-1], numbers[i], operators[i-1])
                         numbers[i-1] = n
+                        numbers.removeAt(i)
+                        operators.removeAt(i-1)
                     }
+                    else i++
+                    println(operators)
+                    println(numbers)
                 }
+                var res = numbers[0]
+                // now do lesser priority calculations
                 for (i in 1 until numbers.size) {
-                    if(operators[i-1] == '+' || operators[i-1] == '-') {
-                        if(n == 0.0) n = numbers[i-1]
-                        n = calcNum(n, numbers[i], operators[i - 1])
-                    }
+                    res = calcNum(res, numbers[i], operators[i-1])
+                    println(operators)
+                    println(numbers)
+                    println(res)
                 }
-                return n
+                return res
             }
             else {
                 return numbers[0]
