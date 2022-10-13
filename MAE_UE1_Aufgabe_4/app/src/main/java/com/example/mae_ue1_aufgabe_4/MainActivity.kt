@@ -104,6 +104,7 @@ class MainActivity : AppCompatActivity() {
         fun popOp() {
             lastCharOperator = false
             textViewFormula.setText(textViewFormula.text.dropLast(3))
+            operators.dropLast(1)
             popNum()
         }
 
