@@ -80,7 +80,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     fun updateDisplay() {
         var textVieweairpressureval = findViewById<TextView>(R.id.airpressure_val)
         var textViewehoeheval = findViewById<TextView>(R.id.height_val)
-        val altitude = getAltitude()
         textVieweairpressureval.setText(String.format("%.0f mbar", airpressurevalue))
         textViewehoeheval.setText(String.format("%.0f m", getAltitude()))
 
