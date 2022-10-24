@@ -68,19 +68,20 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     fun handlePlus() {
-        offsetHeight += 0.5
+        offsetHeight += 1.0
+        updateDisplay()
     }
 
     fun handleMinus() {
-        offsetHeight -= 0.5
+        offsetHeight -= 1.0
+        updateDisplay()
     }
 
     fun updateDisplay() {
         var textVieweairpressureval = findViewById<TextView>(R.id.airpressure_val)
         var textViewehoeheval = findViewById<TextView>(R.id.height_val)
-        val altitude = getAltitude()
-        textVieweairpressureval.setText(String.format("%.3f mbar", altitude))
-        textViewehoeheval.setText(getAltitude().toString())
+        textVieweairpressureval.setText(String.format("%.0f mbar", airpressurevalue))
+        textViewehoeheval.setText(String.format("%.0f m", getAltitude()))
 
     }
 

@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
 
     }
+
     override fun onLocationChanged(location: Location) {
         var textViewLatitude = findViewById<TextView>(R.id.textViewLatitude)
         textViewLatitude.setText(location.latitude.toString())
