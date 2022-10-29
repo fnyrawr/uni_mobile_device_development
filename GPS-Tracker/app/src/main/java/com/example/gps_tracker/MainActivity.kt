@@ -4,6 +4,10 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -13,6 +17,7 @@ import android.os.Environment
 import android.provider.Settings
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +26,7 @@ import androidx.core.content.ContextCompat
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class MainActivity : AppCompatActivity(), LocationListener {
     private lateinit var locationManager: LocationManager
@@ -65,6 +70,11 @@ class MainActivity : AppCompatActivity(), LocationListener {
         var buttonSaveGPX = findViewById<Button>(R.id.buttonSaveGPX)
         buttonSaveGPX.setOnClickListener {
             saveData(true)
+        }
+
+        var buttonVisualize = findViewById<Button>(R.id.buttonVisualize)
+        buttonVisualize.setOnClickListener {
+            drawRoute()
         }
 
         getLocation()
@@ -195,4 +205,31 @@ class MainActivity : AppCompatActivity(), LocationListener {
             Toast.makeText(this, "ERROR: " + e.message, Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun getUTM(latitude: Double, longitude: Double) : String{
+        val ll4 = LatLng(latitude, longitude)
+        val utm2 = ll4.toUTMRef()
+        return utm2.toString()
+    }
+
+//    private fun drawRoute() {
+//        var imageView = findViewById<ImageView>(R.id.imageView)
+//        val bitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888)
+//        val canvas = Canvas(bitmap)
+//        val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+//        paint.setColor(Color.BLACK)
+//        imageView.setImageBitmap(bitmap)
+//        var x = 0
+//        while(x < trackpoints.size - 2) {
+//            var split_utms_first = getUTM(trackpoints[x].latitude, trackpoints[x].longitude).split(" ")
+//            var split_utms_second = getUTM(trackpoints[x + 1].latitude, trackpoints[x + 1].longitude).split(" ")
+//            var xCordsFirst = split_utms_first[1].split(".")[0].takeLast(3)
+//            var yCordsFirst = split_utms_first[2].split(".")[0].takeLast(3)
+//            var xCordsSecond = split_utms_second[1].split(".")[0].takeLast(3)
+//            var yCordsSecond = split_utms_second[2].split(".")[0].takeLast(3)
+//
+//            canvas.drawLine(xCordsFirst.toFloat(), yCordsFirst.toFloat(), xCordsSecond.toFloat(), yCordsSecond.toFloat(), paint)
+//            x++
+//        }
+//    }
 }
