@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recyclerView_waypoints"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="3dp"
+    app:contentPadding="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayoutWaypoints"
+        android:padding="5dp">
+        <TextView
+            android:id="@+id/item_number"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:paddingRight="5dp"
+            android:text="100"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/item_longitude_title"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/item_number"
+            android:text="Longitude" />
+        <TextView
+            android:id="@+id/item_longitude"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/item_longitude_title"
+            android:text="" />
+        <TextView
+            android:id="@+id/item_latitude_title"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/item_longitude"
+            android:text="Latitude" />
+        <TextView
+            android:id="@+id/item_latitude"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/item_latitude_title"
+            android:text="" />
+        <TextView
+            android:id="@+id/item_height_title"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/item_longitude_title"
+            app:layout_constraintLeft_toRightOf="@+id/item_number"
+            android:text="Height" />
+        <TextView
+            android:id="@+id/item_height"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/item_longitude_title"
+            app:layout_constraintLeft_toRightOf="@+id/item_height_title"
+            android:text="" />
+        <TextView
+            android:id="@+id/item_speed_title"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/item_longitude_title"
+            app:layout_constraintLeft_toRightOf="@+id/item_height"
+            android:text="Speed" />
+        <TextView
+            android:id="@+id/item_speed"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/item_longitude_title"
+            app:layout_constraintLeft_toRightOf="@+id/item_speed_title"
+            android:text="" />
+        <TextView
+            android:id="@+id/item_timestamp"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/item_height_title"
+            app:layout_constraintLeft_toRightOf="@+id/item_number"
+            android:text="Timestamp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
