@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
         var buttonVisualize = findViewById<Button>(R.id.buttonVisualize)
         buttonVisualize.setOnClickListener {
-            drawRoute()
+            if(trackpoints.size > 0) drawRoute()
         }
 
         getLocation()
@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == locationPermissionCode) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "required permission granted", Toast.LENGTH_SHORT).show()
+                //
             }
             else {
                 Toast.makeText(this, "required permission denied", Toast.LENGTH_SHORT).show()
@@ -206,30 +206,75 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
     }
 
-    private fun getUTM(latitude: Double, longitude: Double) : String{
+    private fun getUTM(latitude: Double, longitude: Double) : String {
         val ll4 = LatLng(latitude, longitude)
         val utm2 = ll4.toUTMRef()
         return utm2.toString()
     }
 
-//    private fun drawRoute() {
-//        var imageView = findViewById<ImageView>(R.id.imageView)
-//        val bitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888)
-//        val canvas = Canvas(bitmap)
-//        val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-//        paint.setColor(Color.BLACK)
-//        imageView.setImageBitmap(bitmap)
-//        var x = 0
-//        while(x < trackpoints.size - 2) {
-//            var split_utms_first = getUTM(trackpoints[x].latitude, trackpoints[x].longitude).split(" ")
-//            var split_utms_second = getUTM(trackpoints[x + 1].latitude, trackpoints[x + 1].longitude).split(" ")
-//            var xCordsFirst = split_utms_first[1].split(".")[0].takeLast(3)
-//            var yCordsFirst = split_utms_first[2].split(".")[0].takeLast(3)
-//            var xCordsSecond = split_utms_second[1].split(".")[0].takeLast(3)
-//            var yCordsSecond = split_utms_second[2].split(".")[0].takeLast(3)
-//
-//            canvas.drawLine(xCordsFirst.toFloat(), yCordsFirst.toFloat(), xCordsSecond.toFloat(), yCordsSecond.toFloat(), paint)
-//            x++
-//        }
-//    }
+    private fun drawRoute() {
+        // init
+        var minLon: Double = 181.0
+        var maxLon: Double = -181.0
+        var minLat: Double = 91.0
+        var maxLat: Double = -91.0
+        var imageView = findViewById<ImageView>(R.id.imageView)
+        val bitmap = Bitmap.createBitmap(imageView.width, imageView.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        val paint = Paint()
+        paint.color = Color.BLACK
+        paint.style = Paint.Style.STROKE
+        paint.strokeWidth = 3F
+        paint.isAntiAlias = true
+        imageView.setImageBitmap(bitmap)
+        val width = bitmap.width
+        val height = bitmap.height
+
+        // draw 5 x 5 grid
+        var x = 1
+        var y = 1
+        while(x < 5) {
+            while(y < 5) {
+                canvas.drawLine((y*height/5.0).toFloat(), 0.0f, (y*height/ 5.0).toFloat(), height.toFloat(), paint)
+                y++
+            }
+            canvas.drawLine(0.0f, (x*width/5.0).toFloat(), width.toFloat(), (x*width/ 5.0).toFloat(), paint)
+            x++
+        }
+
+        // set max and min longitude and latitude for appropriate scaling
+        for(trackpoint in trackpoints) {
+            if(trackpoint.longitude < minLon) minLon = trackpoint.longitude
+            if(trackpoint.longitude > maxLon) maxLon = trackpoint.longitude
+            if(trackpoint.latitude < minLat) minLat = trackpoint.latitude
+            if(trackpoint.latitude > maxLat) maxLat = trackpoint.latitude
+        }
+        // set display units
+        var deltaLon = maxLon - minLon
+        var deltaLat = maxLat - minLat
+        var dpx = width / deltaLon
+        var dpy = height / deltaLat
+
+        Log.i("UTM min", getUTM(minLat, minLon))
+        Log.i("UTM max", getUTM(maxLat, maxLon))
+
+        var i = 0
+        while(i < trackpoints.size - 2) {
+            var split_utms_first = getUTM(trackpoints[i].latitude, trackpoints[i].longitude).split(" ")
+            var split_utms_second = getUTM(trackpoints[i + 1].latitude, trackpoints[i + 1].longitude).split(" ")
+            var xCordsFirst = split_utms_first[1].split(".")[0].takeLast(3)
+            var yCordsFirst = split_utms_first[2].split(".")[0].takeLast(3)
+            var xCordsSecond = split_utms_second[1].split(".")[0].takeLast(3)
+            var yCordsSecond = split_utms_second[2].split(".")[0].takeLast(3)
+
+            var x1 = ((xCordsFirst.toDouble() * dpx) - minLon).toFloat()
+            var y1 = ((yCordsFirst.toDouble() * dpy) - minLat).toFloat()
+            var x2 = ((xCordsSecond.toDouble() * dpx) - minLon).toFloat()
+            var y2 = ((yCordsSecond.toDouble() * dpy) - minLat).toFloat()
+
+            Log.i("for i=$i", "x1: $x1 | x2: $x2 | y1: $y1 | y2: $y2")
+            canvas.drawLine(x1, y1, x2, y2, paint)
+            i++
+        }
+    }
 }
