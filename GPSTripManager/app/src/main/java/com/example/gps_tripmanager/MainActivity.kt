@@ -271,9 +271,10 @@ class MainActivity : AppCompatActivity(), LocationListener {
     }
 
     private fun getUTM(latitude: Double, longitude: Double) : String {
-        val ll4 = LatLng(latitude, longitude)
-        val utm2 = ll4.toUTMRef()
-        return utm2.toString()
+        //val ll4 = LatLng(latitude, longitude)
+        //val utm2 = ll4.toUTMRef()
+        //return utm2.toString()
+        return ""
     }
 
     private fun drawRoute() {
