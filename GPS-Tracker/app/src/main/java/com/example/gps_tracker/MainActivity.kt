@@ -249,11 +249,33 @@ class MainActivity : AppCompatActivity(), LocationListener {
             if(trackpoint.latitude < minLat) minLat = trackpoint.latitude
             if(trackpoint.latitude > maxLat) maxLat = trackpoint.latitude
         }
+
         // set display units
         var deltaLon = maxLon - minLon
         var deltaLat = maxLat - minLat
-        var dpx = width / deltaLon
-        var dpy = height / deltaLat
+        var geoSize = Math.max(deltaLon, deltaLat)
+
+        var xPrev = 0.0
+        var yPrev = 0.0
+
+        /*
+        for(trackpoint in trackpoints) {
+            var x = ((trackpoint.longitude - minLon) * width) / geoSize
+            var y = height-(((trackpoint.latitude - minLat) * height) / geoSize)
+
+            if(xPrev == 0.0) {
+                canvas.drawLine(x.toFloat(), y.toFloat(), x.toFloat(), y.toFloat(), paint)
+            }
+            else {
+                canvas.drawLine(xPrev.toFloat(), yPrev.toFloat(), x.toFloat(), y.toFloat(), paint)
+            }
+
+            xPrev = x
+            yPrev = y
+        }
+         */
+
+        imageView.setImageBitmap(bitmap)
 
         Log.i("UTM min", getUTM(minLat, minLon))
         Log.i("UTM max", getUTM(maxLat, maxLon))
@@ -267,6 +289,8 @@ class MainActivity : AppCompatActivity(), LocationListener {
             var xCordsSecond = split_utms_second[1].split(".")[0].takeLast(3)
             var yCordsSecond = split_utms_second[2].split(".")[0].takeLast(3)
 
+            // var x = ((trackpoint.longitude - minLon) * width) / geoSize
+            // var y = height-(((trackpoint.latitude - minLat) * height) / geoSize)
             var x1 = ((xCordsFirst.toDouble() * dpx) - minLon).toFloat()
             var y1 = ((yCordsFirst.toDouble() * dpy) - minLat).toFloat()
             var x2 = ((xCordsSecond.toDouble() * dpx) - minLon).toFloat()
