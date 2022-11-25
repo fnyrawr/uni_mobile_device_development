@@ -251,17 +251,20 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
 
         // set display units
-        var deltaLon = maxLon - minLon
-        var deltaLat = maxLat - minLat
+
+        var min_utms = getUTM(minLat, minLon).split(" ")
+        var max_utms = getUTM(maxLat, maxLon).split(" ")
+        var deltaLon = max_utms[2].toDouble() - min_utms[2].toDouble()
+        var deltaLat = max_utms[1].toDouble() - min_utms[1].toDouble()
         var geoSize = Math.max(deltaLon, deltaLat)
 
         var xPrev = 0.0
         var yPrev = 0.0
 
-        /*
         for(trackpoint in trackpoints) {
-            var x = ((trackpoint.longitude - minLon) * width) / geoSize
-            var y = height-(((trackpoint.latitude - minLat) * height) / geoSize)
+            var split_utms = getUTM(trackpoint.latitude, trackpoint.longitude).split(" ")
+            var y = height - ((split_utms[2].toDouble() - min_utms[2].toDouble()) * height) / geoSize
+            var x = (((split_utms[1].toDouble() - min_utms[1].toDouble()) * width) / geoSize)
 
             if(xPrev == 0.0) {
                 canvas.drawLine(x.toFloat(), y.toFloat(), x.toFloat(), y.toFloat(), paint)
@@ -273,32 +276,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
             xPrev = x
             yPrev = y
         }
-         */
 
         imageView.setImageBitmap(bitmap)
-
-        Log.i("UTM min", getUTM(minLat, minLon))
-        Log.i("UTM max", getUTM(maxLat, maxLon))
-
-        var i = 0
-        while(i < trackpoints.size - 2) {
-            var split_utms_first = getUTM(trackpoints[i].latitude, trackpoints[i].longitude).split(" ")
-            var split_utms_second = getUTM(trackpoints[i + 1].latitude, trackpoints[i + 1].longitude).split(" ")
-            var xCordsFirst = split_utms_first[1].split(".")[0].takeLast(3)
-            var yCordsFirst = split_utms_first[2].split(".")[0].takeLast(3)
-            var xCordsSecond = split_utms_second[1].split(".")[0].takeLast(3)
-            var yCordsSecond = split_utms_second[2].split(".")[0].takeLast(3)
-
-            // var x = ((trackpoint.longitude - minLon) * width) / geoSize
-            // var y = height-(((trackpoint.latitude - minLat) * height) / geoSize)
-            var x1 = ((xCordsFirst.toDouble() * dpx) - minLon).toFloat()
-            var y1 = ((yCordsFirst.toDouble() * dpy) - minLat).toFloat()
-            var x2 = ((xCordsSecond.toDouble() * dpx) - minLon).toFloat()
-            var y2 = ((yCordsSecond.toDouble() * dpy) - minLat).toFloat()
-
-            Log.i("for i=$i", "x1: $x1 | x2: $x2 | y1: $y1 | y2: $y2")
-            canvas.drawLine(x1, y1, x2, y2, paint)
-            i++
-        }
     }
 }
