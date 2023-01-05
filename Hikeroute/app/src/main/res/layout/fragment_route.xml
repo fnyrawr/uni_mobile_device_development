@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardViewCoordinates">
@@ -156,54 +156,28 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <Button
-                android:id="@+id/buttonSaveGPX"
-                style="@android:style/Widget.Material.Button.Borderless"
-                android:textColor="@color/teal_700"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Load route"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonDiscard" />
-
-            <Button
-                android:id="@+id/buttonSaveCSV"
-                style="@android:style/Widget.Material.Button.Borderless"
-                android:textColor="@color/teal_700"
+                android:id="@+id/buttonSave"
+                style="@android:style/Widget.Material.Button"
+                android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save route"
-                app:layout_constraintEnd_toStartOf="@+id/buttonSaveGPX"
-                app:layout_constraintTop_toBottomOf="@+id/buttonDiscard" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonStartStop" />
 
-            <Button
-                android:id="@+id/buttonVisualize"
-                style="@android:style/Widget.Material.Button.Borderless"
-                android:textColor="@color/teal_700"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/plain_text_input"
                 android:layout_height="wrap_content"
-                android:text="Visualize\nRoute"
-                app:layout_constraintEnd_toStartOf="@+id/buttonSaveCSV"
-                app:layout_constraintTop_toBottomOf="@+id/buttonDiscard" />
+                android:layout_width="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:inputType="text"
+                android:hint="Route Name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+                app:layout_constraintTop_toBottomOf="@+id/buttonStartStop" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewUTM"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="@+id/cardViewTrackerButtons"
-        app:layout_constraintStart_toStartOf="@+id/cardViewTrackerButtons"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewTrackerButtons"
-        app:layout_constraintWidth="0dp">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

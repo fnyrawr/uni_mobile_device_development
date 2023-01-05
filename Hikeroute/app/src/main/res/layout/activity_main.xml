@@ -14,8 +14,14 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Route"
+            android:text="Create Route"
             android:id="@+id/tabRoute" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Saved Routes"
+            android:id="@+id/tabSavedRoutes" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
@@ -28,6 +34,12 @@
             android:layout_height="wrap_content"
             android:text="POI"
             android:id="@+id/tabPoi" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Visual"
+            android:id="@+id/tabVisual" />
 
     </com.google.android.material.tabs.TabLayout>
 

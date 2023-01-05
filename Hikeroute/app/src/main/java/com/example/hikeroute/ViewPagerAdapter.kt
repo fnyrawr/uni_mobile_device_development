@@ -4,13 +4,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.hikeroute.fragments.PoiFragment
-import com.example.hikeroute.fragments.RouteFragment
-import com.example.hikeroute.fragments.WaypointFragment
+import com.example.hikeroute.fragments.*
 
 class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle): FragmentStateAdapter(fragmentManager, lifecycle) {
     override fun getItemCount(): Int {
-        return 3
+        return 5
     }
 
     override fun createFragment(position: Int): Fragment {
@@ -19,10 +17,16 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle): 
                 RouteFragment()
             }
             1 -> {
-                WaypointFragment()
+                SavedRoutesFragment()
             }
             2 -> {
+                WaypointFragment()
+            }
+            3 -> {
                 PoiFragment()
+            }
+            4 -> {
+                VisualFragment()
             }
             else -> {
                 Fragment()
