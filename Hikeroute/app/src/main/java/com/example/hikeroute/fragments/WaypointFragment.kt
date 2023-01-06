@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hikeroute.MainActivity
 import com.example.hikeroute.R
 import com.example.hikeroute.WaypointRecyclerAdapter
 
@@ -20,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [WaypointFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class WaypointFragment(var waypoints: MutableList<Location>) : Fragment() {
+class WaypointFragment() : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
@@ -43,10 +44,12 @@ class WaypointFragment(var waypoints: MutableList<Location>) : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_waypoint, container, false)
 
+        val mainActivity = activity as MainActivity
+
         recyclerViewWaypoints = view.findViewById<RecyclerView>(R.id.recyclerView_waypoints)
         waypointLayoutManager = LinearLayoutManager(this.context)
         recyclerViewWaypoints.layoutManager = waypointLayoutManager
-        waypointAdapter = WaypointRecyclerAdapter(waypoints)
+        waypointAdapter = WaypointRecyclerAdapter(mainActivity.waypoints)
         recyclerViewWaypoints.adapter = waypointAdapter
 
         return view
