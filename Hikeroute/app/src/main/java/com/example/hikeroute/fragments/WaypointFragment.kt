@@ -54,4 +54,9 @@ class WaypointFragment() : Fragment() {
 
         return view
     }
+
+    override fun onResume() {
+        super.onResume()
+        waypointAdapter?.notifyDataSetChanged()
+    }
 }

@@ -1,19 +1,13 @@
 package com.example.hikeroute.fragments
 
-import android.Manifest
-import android.content.Context
-import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.hikeroute.MainActivity
 import com.example.hikeroute.R
@@ -35,6 +29,9 @@ class RouteFragment : Fragment() {
     private var param2: String? = null
     private var tracking: Boolean = false
     private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
+    private val timer = Timer()
+    private var fragmentActive = false
+    private var lastLocation: Location = Location("dummyprovider")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,27 +49,31 @@ class RouteFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_route, container, false)
         val mainActivity = activity as MainActivity
 
-
         var buttonStartStop = view.findViewById<Button>(R.id.buttonStartStop)
         var textViewRecording = view.findViewById<TextView>(R.id.textViewTracking)
         buttonStartStop.setOnClickListener {
             if(!tracking) {
                 tracking = true
-                buttonStartStop.setText("Stop\nTracking")
-                textViewRecording.setText("now tracking data")
+                buttonStartStop.text = "Stop\nTracking"
+                textViewRecording.text = "now tracking data"
             }
             else {
                 tracking = false
-                buttonStartStop.setText("Start\nTracking")
-                textViewRecording.setText("")
+                buttonStartStop.text = "Start\nTracking"
+                textViewRecording.text = ""
             }
         }
+
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                if(mainActivity.currentLocation.provider != "dummyprovider" && fragmentActive)
+                    updateLocation(mainActivity.currentLocation)
+            }
+        }, 0, 1000)
 
         var buttonDiscard = view.findViewById<Button>(R.id.buttonDiscard)
         buttonDiscard.setOnClickListener {
             mainActivity.waypoints.clear()
-            view.findViewById<TextView>(R.id.textViewRecordCount).setText("${mainActivity.waypoints.count()} records")
-            mainActivity.viewPagerAdapter.notifyDataSetChanged()
         }
 
         return view
@@ -84,22 +85,33 @@ class RouteFragment : Fragment() {
 
         // show current coordinates
         var textViewLongitude = view?.findViewById<TextView>(R.id.textViewLongitude)
-        textViewLongitude?.setText(location.longitude.toString())
+        textViewLongitude?.text = location.longitude.toString()
         var textViewLatitude = view?.findViewById<TextView>(R.id.textViewLatitude)
-        textViewLatitude?.setText(location.latitude.toString())
+        textViewLatitude?.text = location.latitude.toString()
         var textViewHeight = view?.findViewById<TextView>(R.id.textViewHeight)
-        textViewHeight?.setText(location.altitude.toString() + " m")
+        textViewHeight?.text = location.altitude.toString() + " m"
         var textViewSpeed = view?.findViewById<TextView>(R.id.textViewSpeed)
         var speed = location.speed * 3.6 // convert to km/h
-        textViewSpeed?.setText(String.format("%.2f km/h", speed))
+        textViewSpeed?.text = String.format("%.2f km/h", speed)
         var textViewTimestamp = view?.findViewById<TextView>(R.id.textViewTimestamp)
-        textViewTimestamp?.setText(simpleDateFormat.format(location.time))
+        textViewTimestamp?.text = simpleDateFormat.format(location.time)
 
         // add tracked data to list
-        if(tracking) {
+        if(tracking && lastLocation.provider != "dummyprovider" && location != lastLocation) {
             mainActivity.waypoints.add(location)
-            view?.findViewById<TextView>(R.id.textViewRecordCount)?.setText("${mainActivity.waypoints.size} records")
-            mainActivity.viewPagerAdapter.notifyItemInserted(mainActivity.waypoints.size-1)
         }
+
+        lastLocation = location
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fragmentActive = true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        fragmentActive = false
+        tracking = false
     }
 }

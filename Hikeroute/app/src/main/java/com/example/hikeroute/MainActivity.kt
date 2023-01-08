@@ -8,24 +8,22 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
 import android.widget.Toast
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.example.hikeroute.fragments.RouteFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), LocationListener {
 
     private val locationPermissionCode = 2
-    val waypoints: MutableList<Location> = ArrayList()
+    var waypoints: MutableList<Location> = ArrayList()
+    var currentLocation: Location = Location("dummyprovider")
     lateinit var routeName: String
     lateinit var viewPagerAdapter: ViewPagerAdapter
     lateinit var locationManager: LocationManager
@@ -94,7 +92,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
     }
 
     override fun onLocationChanged(location: Location) {
-        // ToDo: call RouteFragment.updateLocation(location)
+        currentLocation = location
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

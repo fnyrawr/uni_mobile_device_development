@@ -145,17 +145,6 @@
                 app:layout_constraintTop_toTopOf="@+id/buttonDiscard"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-            <TextView
-                android:id="@+id/textViewRecordCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dip"
-                android:text="0 records"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/buttonDiscard"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
             <Button
                 android:id="@+id/buttonSave"
                 style="@android:style/Widget.Material.Button"

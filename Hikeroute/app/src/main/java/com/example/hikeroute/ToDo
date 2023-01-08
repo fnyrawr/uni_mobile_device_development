@@ -20,3 +20,11 @@ Table Waypoints
 Fragment Waypoints & Fragment POI
     RecyclerView
     bei POI ImageView für Photo, Button für Photo aufnehmen (Intent)
+
+---------------------------------------------
+
+Route Creation working
+Discarding working
+displaying waypoints working
+-> visuals
+-> save (ROOM DB needed)
