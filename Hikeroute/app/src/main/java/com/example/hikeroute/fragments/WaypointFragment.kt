@@ -1,6 +1,5 @@
 package com.example.hikeroute.fragments
 
-import android.location.Location
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
