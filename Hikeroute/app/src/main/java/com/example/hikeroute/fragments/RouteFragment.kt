@@ -104,6 +104,11 @@ class RouteFragment : Fragment() {
         lastLocation = location
     }
 
+    fun saveRoute() {
+        // should only work if not tracking && route name given in TextEdit
+        // saving Route as GPX and into Room DB
+    }
+
     override fun onResume() {
         super.onResume()
         fragmentActive = true
