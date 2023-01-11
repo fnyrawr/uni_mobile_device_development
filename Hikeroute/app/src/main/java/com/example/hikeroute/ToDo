@@ -1,16 +1,4 @@
 Room DB implementieren (siehe Tutorial)
-Table Route
-    Name
-    Begin (time)
-    End (time)
-    GPX file (link to file)
-    Duration (time)
-    POIs (list)
-    Waypoints (list)
-
-Table Poi
-  Coordinates
-  Link to Photo on filesystem
 
 Table Waypoints
   List of Coordinates

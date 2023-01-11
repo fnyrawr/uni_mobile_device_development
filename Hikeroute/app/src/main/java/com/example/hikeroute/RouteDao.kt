@@ -6,7 +6,7 @@ import androidx.room.*
 @Dao
 interface RouteDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(route: RouteEntity)
 
     @Update
