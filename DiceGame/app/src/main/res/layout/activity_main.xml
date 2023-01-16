@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dicenicer_background">
+    </LinearLayout>
+
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -169,21 +175,27 @@
 
         <Button
             android:id="@+id/buttonRollDice"
-            style="@android:style/Widget.Material.Button"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Roll the dice"
+            android:layout_marginTop="3dp"
+            android:text="Roll\nthe dice"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/gold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/buttonResetScore"
-            style="@android:style/Widget.Material.Button"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Reset score"
+            android:layout_marginTop="3dp"
+            android:text="Reset\nscore"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/gold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -206,20 +218,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Aces"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Total 1s"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreAces"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -232,20 +245,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Twos"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Total 2s"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreTwos"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -258,20 +272,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Threes"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Total 3s"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreThrees"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -284,20 +299,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Fours"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Total 4s"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreFours"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -310,20 +326,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Fives"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Total 5s"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreFives"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -336,20 +353,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Sixes"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Total 6s"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreSixes"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -362,7 +380,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Upper Total"
-                android:textColor="@color/blue_200"
+                android:textColor="@color/brown"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -375,7 +393,7 @@
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/upperTotal"
-                android:textColor="@color/blue_200"
+                android:textColor="@color/brown"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -388,20 +406,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Bonus"
-                android:textColor="@color/yellow_700"
+                android:textColor="@color/gold"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Score 35\nif Upper Total\ngreater 63"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreBonus"
-                android:textColor="@color/yellow_700"
+                android:textColor="@color/gold"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -414,20 +433,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Three of a Kind"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Total Dice"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreThreeOfKind"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -440,20 +460,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Four of a Kind"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Total Dice"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreFourOfKind"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -466,20 +487,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Full House"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Score 25"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreFullHouse"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -492,20 +514,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Small Straight"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Score 30"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreSmallStraight"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -518,20 +541,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Large Straight"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Score 40"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreLargeStraight"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -544,20 +568,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Five of a Kind"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Score 50"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreFiveKind"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -570,20 +595,21 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Chance"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Total Dice"
+                android:textColor="@color/grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreChance"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -596,7 +622,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Lower Total"
-                android:textColor="@color/blue_200"
+                android:textColor="@color/brown"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -609,7 +635,7 @@
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreLowerTotal"
-                android:textColor="@color/blue_200"
+                android:textColor="@color/brown"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -622,7 +648,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Total"
-                android:textColor="@color/yellow_700"
+                android:textColor="@color/gold"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -635,7 +661,7 @@
                 android:paddingHorizontal="10dip"
                 android:layout_marginLeft="10dp"
                 android:id="@+id/scoreTotal"
-                android:textColor="@color/yellow_700"
+                android:textColor="@color/gold"
                 android:textStyle="bold"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
