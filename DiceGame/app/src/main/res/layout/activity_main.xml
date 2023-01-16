@@ -23,75 +23,35 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
-        <TableRow
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardCupDice1"
+                android:id="@+id/cardRoundIndicator"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:cardCornerRadius="15dp"
                 android:layout_margin="5dp"
                 app:cardElevation="10dp">
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardCupDice2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toEndOf="@+id/cardCupDice1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                android:layout_margin="5dp"
-                app:cardElevation="10dp">
-            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Round"
+                android:textColor="@color/brown"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_marginEnd="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cardRoundIndicator"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardCupDice3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toEndOf="@+id/cardCupDice2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                android:layout_margin="5dp"
-                app:cardElevation="10dp">
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardCupDice4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toEndOf="@+id/cardCupDice3"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                android:layout_margin="5dp"
-                app:cardElevation="10dp">
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardCupDice5"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toEndOf="@+id/cardCupDice4"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                android:layout_margin="5dp"
-                app:cardElevation="10dp">
-            </androidx.cardview.widget.CardView>
-
-        </TableRow>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TableRow
             android:layout_width="wrap_content"
@@ -99,7 +59,7 @@
             android:layout_marginTop="5dp">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardHoldDice1"
+                android:id="@+id/cardDice1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 app:layout_constraintDimensionRatio="1:1"
@@ -111,7 +71,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardHoldDice2"
+                android:id="@+id/cardDice2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
@@ -124,7 +84,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardHoldDice3"
+                android:id="@+id/cardDice3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
@@ -137,7 +97,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardHoldDice4"
+                android:id="@+id/cardDice4"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
@@ -150,7 +110,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardHoldDice5"
+                android:id="@+id/cardDice5"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
