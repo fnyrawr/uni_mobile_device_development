@@ -18,7 +18,13 @@ class MainActivity : AppCompatActivity() {
     private var diceRollCounter = 0
     // 13 score possibilities
     private var roundCounter = 0
+    // scores
     private var scoreArray = Array(13) { -1 }
+    private var upperScore = 0
+    private var bonus = 0
+    private var lowerScore = 0
+    private var total = 0
+    // UI elements
     private lateinit var buttonRollDice: Button
     private lateinit var buttonResetScore: Button
     private lateinit var roundIndicator: ImageView
@@ -48,6 +54,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textViewScoreLargeStraight: TextView
     private lateinit var textViewScoreFiveOfKind: TextView
     private lateinit var textViewScoreChance: TextView
+    private lateinit var textViewScoreUpperTotal: TextView
+    private lateinit var textViewScoreBonus: TextView
+    private lateinit var textViewScoreLowerTotal: TextView
+    private lateinit var textViewScoreTotal: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,6 +106,10 @@ class MainActivity : AppCompatActivity() {
         textViewScoreLargeStraight = findViewById<TextView>(R.id.scoreLargeStraight)
         textViewScoreFiveOfKind = findViewById<TextView>(R.id.scoreFiveOfKind)
         textViewScoreChance = findViewById<TextView>(R.id.scoreChance)
+        textViewScoreUpperTotal = findViewById<TextView>(R.id.scoreUpperTotal)
+        textViewScoreBonus = findViewById<TextView>(R.id.scoreBonus)
+        textViewScoreLowerTotal = findViewById<TextView>(R.id.scoreLowerTotal)
+        textViewScoreTotal = findViewById<TextView>(R.id.scoreTotal)
 
         val imageViewOne = findViewById<ImageView>(R.id.diceOneIndicatorImg)
         val imageViewTwo = findViewById<ImageView>(R.id.diceTwoIndicatorImg)
@@ -138,10 +152,145 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonAces.setOnClickListener() {
-            if(scoreArray[0] == -1) {
-                scoreArray[0] = CalculateResults().sumNofKind(1, diceValues)
-                textViewScoreAces.text = scoreArray[0].toString()
-                optionChosen()
+            if(diceRollCounter > 0) {
+                if (scoreArray[0] == -1) {
+                    scoreArray[0] = CalculateResults().sumNofKind(1, diceValues)
+                    textViewScoreAces.text = scoreArray[0].toString()
+                    optionChosen()
+                }
+                buttonAces.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonTwos.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[1] == -1) {
+                    scoreArray[1] = CalculateResults().sumNofKind(2, diceValues)
+                    textViewScoreTwos.text = scoreArray[1].toString()
+                    optionChosen()
+                }
+                buttonTwos.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonThrees.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[2] == -1) {
+                    scoreArray[2] = CalculateResults().sumNofKind(3, diceValues)
+                    textViewScoreThrees.text = scoreArray[2].toString()
+                    optionChosen()
+                }
+                buttonThrees.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonFours.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[3] == -1) {
+                    scoreArray[3] = CalculateResults().sumNofKind(4, diceValues)
+                    textViewScoreFours.text = scoreArray[3].toString()
+                    optionChosen()
+                }
+                buttonFours.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonFives.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[4] == -1) {
+                    scoreArray[4] = CalculateResults().sumNofKind(5, diceValues)
+                    textViewScoreFives.text = scoreArray[4].toString()
+                    optionChosen()
+                }
+                buttonFives.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonSixes.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[5] == -1) {
+                    scoreArray[5] = CalculateResults().sumNofKind(6, diceValues)
+                    textViewScoreSixes.text = scoreArray[5].toString()
+                    optionChosen()
+                }
+                buttonSixes.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonThreeOfKind.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[6] == -1) {
+                    scoreArray[6] = CalculateResults().sumThreeOfAKind(diceValues)
+                    textViewScoreThreeOfKind.text = scoreArray[6].toString()
+                    optionChosen()
+                }
+                buttonThreeOfKind.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonFourOfKind.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[7] == -1) {
+                    scoreArray[7] = CalculateResults().sumFourOfAKind(diceValues)
+                    textViewScoreFourOfKind.text = scoreArray[7].toString()
+                    optionChosen()
+                }
+                buttonFourOfKind.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonFullHouse.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[8] == -1) {
+                    scoreArray[8] = CalculateResults().sumFullHouse(diceValues)
+                    textViewScoreFullHouse.text = scoreArray[8].toString()
+                    optionChosen()
+                }
+                buttonFullHouse.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonSmallStraight.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[9] == -1) {
+                    scoreArray[9] = CalculateResults().sumSmallStraight(diceValues)
+                    textViewScoreSmallStraight.text = scoreArray[9].toString()
+                    optionChosen()
+                }
+                buttonSmallStraight.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonLargeStraight.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[10] == -1) {
+                    scoreArray[10] = CalculateResults().sumLargeStraight(diceValues)
+                    textViewScoreLargeStraight.text = scoreArray[10].toString()
+                    optionChosen()
+                }
+                buttonLargeStraight.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonFiveOfKind.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[11] == -1) {
+                    scoreArray[11] = CalculateResults().sumFiveOfAKind(diceValues)
+                    textViewScoreFiveOfKind.text = scoreArray[11].toString()
+                    optionChosen()
+                }
+                buttonFiveOfKind.setImageResource(R.drawable.button_pressed)
+            }
+        }
+
+        buttonChance.setOnClickListener() {
+            if(diceRollCounter > 0) {
+                if (scoreArray[12] == -1) {
+                    scoreArray[12] = CalculateResults().sumTotal(diceValues)
+                    textViewScoreChance.text = scoreArray[12].toString()
+                    optionChosen()
+                }
+                buttonChance.setImageResource(R.drawable.button_pressed)
             }
         }
     }
@@ -171,8 +320,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun optionChosen() {
+        updateScore()
         roundCounter++
         diceRollCounter = 0
+
+        if(roundCounter < 13) {
+            buttonRollDice.isEnabled = true
+            // clear dice faces
+            for (i in 0..4) {
+                diceChosen[i] = false
+            }
+        }
     }
 
     fun resetScore() {
@@ -188,6 +346,10 @@ class MainActivity : AppCompatActivity() {
         for(i in 0..12) {
             scoreArray[i] = -1
         }
+        upperScore = 0
+        bonus = 0
+        lowerScore = 0
+        total = 0
         resetScoreboard()
     }
 
@@ -224,6 +386,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun updateScore() {
+        upperScore = 0
+        lowerScore = 0
+        for(i in 0..5) if(scoreArray[i] > 0) upperScore += scoreArray[i]
+        if(upperScore > 62) bonus = 35 else 0
+        for(i in 6..12) if(scoreArray[i] > 0) lowerScore += scoreArray[i]
+        total = upperScore + bonus + lowerScore
+
+        if(upperScore > 0) textViewScoreUpperTotal.text = upperScore.toString()
+        if(bonus > 0) textViewScoreBonus.text = bonus.toString()
+        if(lowerScore > 0) textViewScoreLowerTotal.text = lowerScore.toString()
+        if(total > 0) textViewScoreTotal.text = total.toString()
+    }
+
     fun resetScoreboard() {
         textViewScoreAces.text = ""
         textViewScoreTwos.text = ""
@@ -238,5 +414,24 @@ class MainActivity : AppCompatActivity() {
         textViewScoreLargeStraight.text = ""
         textViewScoreFiveOfKind.text = ""
         textViewScoreChance.text = ""
+
+        textViewScoreUpperTotal.text = ""
+        textViewScoreBonus.text = ""
+        textViewScoreLowerTotal.text = ""
+        textViewScoreTotal.text = ""
+
+        buttonAces.setImageResource(R.drawable.button_normal)
+        buttonTwos.setImageResource(R.drawable.button_normal)
+        buttonThrees.setImageResource(R.drawable.button_normal)
+        buttonFours.setImageResource(R.drawable.button_normal)
+        buttonFives.setImageResource(R.drawable.button_normal)
+        buttonSixes.setImageResource(R.drawable.button_normal)
+        buttonThreeOfKind.setImageResource(R.drawable.button_normal)
+        buttonFourOfKind.setImageResource(R.drawable.button_normal)
+        buttonFullHouse.setImageResource(R.drawable.button_normal)
+        buttonSmallStraight.setImageResource(R.drawable.button_normal)
+        buttonLargeStraight.setImageResource(R.drawable.button_normal)
+        buttonFiveOfKind.setImageResource(R.drawable.button_normal)
+        buttonChance.setImageResource(R.drawable.button_normal)
     }
 }

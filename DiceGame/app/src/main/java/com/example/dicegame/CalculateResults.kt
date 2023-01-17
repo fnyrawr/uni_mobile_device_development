@@ -85,23 +85,26 @@ class CalculateResults {
     // small straight
     fun sumSmallStraight(diceValues: Array<Int>): Int {
         diceValues.sort()
-        var skipped = 0
-        // condition can't be met if smallest number is greater than 3
-        var firstFace = diceValues[0]
-        if (firstFace > 3) return 0
-        for(i in diceValues.indices) {
-            if(diceValues[i] != i + firstFace + skipped) {
-                // same value can be twice in set
-                if((diceValues[0] == 1) && (diceValues[1] == 3) && (skipped == 0)) {
-                    firstFace++
+        println("[" + diceValues[0] + "][" + diceValues[1] + "][" + diceValues[2] + "][" + diceValues[3] + "][" + diceValues[4] + "]")
+        for(i in 0..3) {
+            var tmp = 0
+            if(diceValues[i] == diceValues[i+1]) {
+                tmp = diceValues[i]
+                for(j in i..3) {
+                    diceValues[j] = diceValues[j+1]
                 }
-                else {
-                    if((diceValues[i] != diceValues[i-1]) || (skipped > 0)) return 0
-                }
-                skipped = 1
+                diceValues[4] = tmp
             }
         }
-        return 30
+        if( ((diceValues[0] == 1) && (diceValues[1] == 2) && (diceValues[2] == 3) && (diceValues[3] == 4)) ||
+            ((diceValues[0] == 2) && (diceValues[1] == 3) && (diceValues[2] == 4) && (diceValues[3] == 5)) ||
+            ((diceValues[0] == 3) && (diceValues[1] == 4) && (diceValues[2] == 5) && (diceValues[3] == 6)) ||
+            ((diceValues[1] == 1) && (diceValues[2] == 2) && (diceValues[3] == 3) && (diceValues[4] == 4)) ||
+            ((diceValues[1] == 2) && (diceValues[2] == 3) && (diceValues[3] == 4) && (diceValues[4] == 5)) ||
+            ((diceValues[1] == 3) && (diceValues[2] == 4) && (diceValues[3] == 5) && (diceValues[4] == 6)) ) {
+            return 30
+        }
+        return 0
     }
 
     // large straight
@@ -121,7 +124,7 @@ class CalculateResults {
         // sum values
         var sum = 0
         for(i in values.indices) {
-            sum += values[i]
+            if (values[i] > 0) sum += values[i]
         }
         return sum
     }
