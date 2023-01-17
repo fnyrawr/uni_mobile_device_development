@@ -36,6 +36,11 @@
                 app:cardCornerRadius="15dp"
                 android:layout_margin="5dp"
                 app:cardElevation="10dp">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/roundIndicatorImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </androidx.appcompat.widget.AppCompatImageView>
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -68,6 +73,11 @@
                 app:cardCornerRadius="15dp"
                 android:layout_margin="5dp"
                 app:cardElevation="10dp">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/diceOneIndicatorImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </androidx.appcompat.widget.AppCompatImageView>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -81,6 +91,11 @@
                 app:cardCornerRadius="15dp"
                 android:layout_margin="5dp"
                 app:cardElevation="10dp">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/diceTwoIndicatorImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </androidx.appcompat.widget.AppCompatImageView>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -94,6 +109,11 @@
                 app:cardCornerRadius="15dp"
                 android:layout_margin="5dp"
                 app:cardElevation="10dp">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/diceThreeIndicatorImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </androidx.appcompat.widget.AppCompatImageView>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -107,6 +127,11 @@
                 app:cardCornerRadius="15dp"
                 android:layout_margin="5dp"
                 app:cardElevation="10dp">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/diceFourIndicatorImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </androidx.appcompat.widget.AppCompatImageView>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -120,6 +145,11 @@
                 app:cardCornerRadius="15dp"
                 android:layout_margin="5dp"
                 app:cardElevation="10dp">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/diceFiveIndicatorImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </androidx.appcompat.widget.AppCompatImageView>
             </androidx.cardview.widget.CardView>
 
         </TableRow>
