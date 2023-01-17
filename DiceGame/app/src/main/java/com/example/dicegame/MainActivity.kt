@@ -1,13 +1,12 @@
 package com.example.dicegame
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Button
 import android.widget.ImageView
-import java.util.*
-import kotlin.collections.ArrayList
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     private val diceNormalIcons: MutableList<Int> = ArrayList()
@@ -16,12 +15,27 @@ class MainActivity : AppCompatActivity() {
     private val diceValues = Array(5) { 0 }
     private val diceChosen = Array(5) { false }
     // 3 rounds per phase
+    private var diceRollCounter = 0
+    // 13 score possibilities
     private var roundCounter = 0
     // 0: roll dice and select, 1: pick scoring, 2: game over
     private var phase = 0
     private lateinit var buttonRollDice: Button
     private lateinit var buttonResetScore: Button
     private lateinit var roundIndicator: ImageView
+    private lateinit var buttonAces: TextView
+    private lateinit var buttonTwos: TextView
+    private lateinit var buttonThrees: TextView
+    private lateinit var buttonFours: TextView
+    private lateinit var buttonFives: TextView
+    private lateinit var buttonSixes: TextView
+    private lateinit var buttonThreeOfKind: TextView
+    private lateinit var buttonFourOfKind: TextView
+    private lateinit var buttonFullHouse: TextView
+    private lateinit var buttonSmallStraight: TextView
+    private lateinit var buttonLargeStraight: TextView
+    private lateinit var buttonFiveOfKind: TextView
+    private lateinit var buttonChance: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +57,20 @@ class MainActivity : AppCompatActivity() {
         buttonRollDice = findViewById<Button>(R.id.buttonRollDice)
         buttonResetScore = findViewById<Button>(R.id.buttonResetScore)
         roundIndicator = findViewById<ImageView>(R.id.roundIndicatorImg)
+
+        buttonAces = findViewById<TextView>(R.id.textViewAces)
+        buttonTwos = findViewById<TextView>(R.id.textViewTwos)
+        buttonThrees = findViewById<TextView>(R.id.textViewThrees)
+        buttonFours = findViewById<TextView>(R.id.textViewFours)
+        buttonFives = findViewById<TextView>(R.id.textViewFives)
+        buttonSixes = findViewById<TextView>(R.id.textViewSixes)
+        buttonThreeOfKind = findViewById<TextView>(R.id.textViewThreeOfKind)
+        buttonFourOfKind = findViewById<TextView>(R.id.textViewFourOfKind)
+        buttonFullHouse = findViewById<TextView>(R.id.textViewFullHouse)
+        buttonSmallStraight = findViewById<TextView>(R.id.textViewSmallStraight)
+        buttonLargeStraight = findViewById<TextView>(R.id.textViewLargeStraight)
+        buttonFiveOfKind = findViewById<TextView>(R.id.textViewFiveOfKind)
+        buttonChance = findViewById<TextView>(R.id.textViewChance)
 
         val imageViewOne = findViewById<ImageView>(R.id.diceOneIndicatorImg)
         val imageViewTwo = findViewById<ImageView>(R.id.diceTwoIndicatorImg)
@@ -82,7 +110,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonResetScore.setOnClickListener() {
             buttonRollDice.isEnabled = true
-            roundCounter = 0
+            diceRollCounter = 0
             roundIndicator.setImageResource(0)
             // clear dice faces
             for(i in 0 .. 4) {
@@ -90,10 +118,16 @@ class MainActivity : AppCompatActivity() {
                 diceFaces[i].setImageResource(0)
             }
         }
+
+        buttonAces.setOnClickListener() {
+            print("clicked")
+            val calcResults = CalculateResults()
+            print(calcResults.sumNofKind(1, diceValues))
+        }
     }
 
     fun toggleDiceSelection(i: Int) {
-        if(roundCounter > 0) {
+        if(diceRollCounter > 0) {
             if (!diceChosen[i]) {
                 // select dice hold
                 diceFaces[i].setImageResource(diceChosenIcons[diceValues[i]-1])
@@ -117,22 +151,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun rollDice() {
-        roundCounter++
+        diceRollCounter++
 
-        if(roundCounter >= 3) {
+        if(diceRollCounter >= 3) {
             buttonRollDice.isEnabled = false
         }
 
         // animateDice()
         updateDice()
 
-        if(roundCounter == 1) {
+        if(diceRollCounter == 1) {
             roundIndicator.setImageResource(diceChosenIcons[0])
         }
-        if(roundCounter == 2) {
+        if(diceRollCounter == 2) {
             roundIndicator.setImageResource(diceChosenIcons[1])
         }
-        if(roundCounter == 3) {
+        if(diceRollCounter == 3) {
             roundIndicator.setImageResource(diceChosenIcons[2])
         }
     }

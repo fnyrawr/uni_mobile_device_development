@@ -208,6 +208,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Aces"
+                android:id="@+id/textViewAces"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -235,6 +236,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Twos"
+                android:id="@+id/textViewTwos"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -262,6 +264,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Threes"
+                android:id="@+id/textViewThrees"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -289,6 +292,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Fours"
+                android:id="@+id/textViewFours"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -316,6 +320,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Fives"
+                android:id="@+id/textViewFives"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -343,6 +348,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Sixes"
+                android:id="@+id/textViewSixes"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -423,6 +429,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Three of a Kind"
+                android:id="@+id/textViewThreeOfKind"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -450,6 +457,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Four of a Kind"
+                android:id="@+id/textViewFourOfKind"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -477,6 +485,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Full House"
+                android:id="@+id/textViewFullHouse"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -504,6 +513,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Small Straight"
+                android:id="@+id/textViewSmallStraight"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -531,6 +541,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Large Straight"
+                android:id="@+id/textViewLargeStraight"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -558,6 +569,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Five of a Kind"
+                android:id="@+id/textViewFiveOfKind"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -585,6 +597,7 @@
             <TextView
                 android:paddingHorizontal="10dip"
                 android:text="Chance"
+                android:id="@+id/textViewChance"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
