@@ -18,8 +18,7 @@ class MainActivity : AppCompatActivity() {
     private var diceRollCounter = 0
     // 13 score possibilities
     private var roundCounter = 0
-    // 0: roll dice and select, 1: pick scoring, 2: game over
-    private var phase = 0
+    private var scoreArray = Array(13) { -1 }
     private lateinit var buttonRollDice: Button
     private lateinit var buttonResetScore: Button
     private lateinit var roundIndicator: ImageView
@@ -135,19 +134,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonResetScore.setOnClickListener() {
-            buttonRollDice.isEnabled = true
-            diceRollCounter = 0
-            roundIndicator.setImageResource(0)
-            // clear dice faces
-            for(i in 0 .. 4) {
-                diceChosen[i] = false
-                diceFaces[i].setImageResource(0)
-            }
+            resetScore()
         }
 
         buttonAces.setOnClickListener() {
-            val calcResults = CalculateResults()
-            println(calcResults.sumNofKind(1, diceValues))
+            if(scoreArray[0] == -1) {
+                scoreArray[0] = CalculateResults().sumNofKind(1, diceValues)
+                textViewScoreAces.text = scoreArray[0].toString()
+                optionChosen()
+            }
         }
     }
 
@@ -178,6 +173,22 @@ class MainActivity : AppCompatActivity() {
     fun optionChosen() {
         roundCounter++
         diceRollCounter = 0
+    }
+
+    fun resetScore() {
+        buttonRollDice.isEnabled = true
+        diceRollCounter = 0
+        roundIndicator.setImageResource(0)
+        // clear dice faces
+        for(i in 0 .. 4) {
+            diceChosen[i] = false
+            diceFaces[i].setImageResource(0)
+        }
+        // reset score
+        for(i in 0..12) {
+            scoreArray[i] = -1
+        }
+        resetScoreboard()
     }
 
     fun rollDice() {
@@ -213,4 +224,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun resetScoreboard() {
+        textViewScoreAces.text = ""
+        textViewScoreTwos.text = ""
+        textViewScoreThrees.text = ""
+        textViewScoreFours.text = ""
+        textViewScoreFives.text = ""
+        textViewScoreSixes.text = ""
+        textViewScoreThreeOfKind.text = ""
+        textViewScoreFourOfKind.text = ""
+        textViewScoreFullHouse.text = ""
+        textViewScoreSmallStraight.text = ""
+        textViewScoreLargeStraight.text = ""
+        textViewScoreFiveOfKind.text = ""
+        textViewScoreChance.text = ""
+    }
 }
