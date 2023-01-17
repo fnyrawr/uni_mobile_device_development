@@ -6,7 +6,7 @@ class CalculateResults {
         var sum = 0
         for(i in 0..4) {
             if(diceValues[i] == n)
-                sum += diceValues[n]
+                sum += n
         }
         return sum
     }

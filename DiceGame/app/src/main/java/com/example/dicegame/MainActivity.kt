@@ -23,19 +23,32 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonRollDice: Button
     private lateinit var buttonResetScore: Button
     private lateinit var roundIndicator: ImageView
-    private lateinit var buttonAces: TextView
-    private lateinit var buttonTwos: TextView
-    private lateinit var buttonThrees: TextView
-    private lateinit var buttonFours: TextView
-    private lateinit var buttonFives: TextView
-    private lateinit var buttonSixes: TextView
-    private lateinit var buttonThreeOfKind: TextView
-    private lateinit var buttonFourOfKind: TextView
-    private lateinit var buttonFullHouse: TextView
-    private lateinit var buttonSmallStraight: TextView
-    private lateinit var buttonLargeStraight: TextView
-    private lateinit var buttonFiveOfKind: TextView
-    private lateinit var buttonChance: TextView
+    private lateinit var buttonAces: ImageView
+    private lateinit var buttonTwos: ImageView
+    private lateinit var buttonThrees: ImageView
+    private lateinit var buttonFours: ImageView
+    private lateinit var buttonFives: ImageView
+    private lateinit var buttonSixes: ImageView
+    private lateinit var buttonThreeOfKind: ImageView
+    private lateinit var buttonFourOfKind: ImageView
+    private lateinit var buttonFullHouse: ImageView
+    private lateinit var buttonSmallStraight: ImageView
+    private lateinit var buttonLargeStraight: ImageView
+    private lateinit var buttonFiveOfKind: ImageView
+    private lateinit var buttonChance: ImageView
+    private lateinit var textViewScoreAces: TextView
+    private lateinit var textViewScoreTwos: TextView
+    private lateinit var textViewScoreThrees: TextView
+    private lateinit var textViewScoreFours: TextView
+    private lateinit var textViewScoreFives: TextView
+    private lateinit var textViewScoreSixes: TextView
+    private lateinit var textViewScoreThreeOfKind: TextView
+    private lateinit var textViewScoreFourOfKind: TextView
+    private lateinit var textViewScoreFullHouse: TextView
+    private lateinit var textViewScoreSmallStraight: TextView
+    private lateinit var textViewScoreLargeStraight: TextView
+    private lateinit var textViewScoreFiveOfKind: TextView
+    private lateinit var textViewScoreChance: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,19 +71,32 @@ class MainActivity : AppCompatActivity() {
         buttonResetScore = findViewById<Button>(R.id.buttonResetScore)
         roundIndicator = findViewById<ImageView>(R.id.roundIndicatorImg)
 
-        buttonAces = findViewById<TextView>(R.id.textViewAces)
-        buttonTwos = findViewById<TextView>(R.id.textViewTwos)
-        buttonThrees = findViewById<TextView>(R.id.textViewThrees)
-        buttonFours = findViewById<TextView>(R.id.textViewFours)
-        buttonFives = findViewById<TextView>(R.id.textViewFives)
-        buttonSixes = findViewById<TextView>(R.id.textViewSixes)
-        buttonThreeOfKind = findViewById<TextView>(R.id.textViewThreeOfKind)
-        buttonFourOfKind = findViewById<TextView>(R.id.textViewFourOfKind)
-        buttonFullHouse = findViewById<TextView>(R.id.textViewFullHouse)
-        buttonSmallStraight = findViewById<TextView>(R.id.textViewSmallStraight)
-        buttonLargeStraight = findViewById<TextView>(R.id.textViewLargeStraight)
-        buttonFiveOfKind = findViewById<TextView>(R.id.textViewFiveOfKind)
-        buttonChance = findViewById<TextView>(R.id.textViewChance)
+        buttonAces = findViewById<ImageView>(R.id.imageViewAces)
+        buttonTwos = findViewById<ImageView>(R.id.imageViewTwos)
+        buttonThrees = findViewById<ImageView>(R.id.imageViewThrees)
+        buttonFours = findViewById<ImageView>(R.id.imageViewFours)
+        buttonFives = findViewById<ImageView>(R.id.imageViewFives)
+        buttonSixes = findViewById<ImageView>(R.id.imageViewSixes)
+        buttonThreeOfKind = findViewById<ImageView>(R.id.imageViewThreeOfKind)
+        buttonFourOfKind = findViewById<ImageView>(R.id.imageViewFourOfKind)
+        buttonFullHouse = findViewById<ImageView>(R.id.imageViewFullHouse)
+        buttonSmallStraight = findViewById<ImageView>(R.id.imageViewSmallStraight)
+        buttonLargeStraight = findViewById<ImageView>(R.id.imageViewLargeStraight)
+        buttonFiveOfKind = findViewById<ImageView>(R.id.imageViewFiveOfKind)
+        buttonChance = findViewById<ImageView>(R.id.imageViewChance)
+        textViewScoreAces = findViewById<TextView>(R.id.scoreAces)
+        textViewScoreTwos = findViewById<TextView>(R.id.scoreTwos)
+        textViewScoreThrees = findViewById<TextView>(R.id.scoreThrees)
+        textViewScoreFours = findViewById<TextView>(R.id.scoreFours)
+        textViewScoreFives = findViewById<TextView>(R.id.scoreFives)
+        textViewScoreSixes = findViewById<TextView>(R.id.scoreSixes)
+        textViewScoreThreeOfKind = findViewById<TextView>(R.id.scoreThreeOfKind)
+        textViewScoreFourOfKind = findViewById<TextView>(R.id.scoreFourOfKind)
+        textViewScoreFullHouse = findViewById<TextView>(R.id.scoreFullHouse)
+        textViewScoreSmallStraight = findViewById<TextView>(R.id.scoreSmallStraight)
+        textViewScoreLargeStraight = findViewById<TextView>(R.id.scoreLargeStraight)
+        textViewScoreFiveOfKind = findViewById<TextView>(R.id.scoreFiveOfKind)
+        textViewScoreChance = findViewById<TextView>(R.id.scoreChance)
 
         val imageViewOne = findViewById<ImageView>(R.id.diceOneIndicatorImg)
         val imageViewTwo = findViewById<ImageView>(R.id.diceTwoIndicatorImg)
@@ -120,9 +146,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonAces.setOnClickListener() {
-            print("clicked")
             val calcResults = CalculateResults()
-            print(calcResults.sumNofKind(1, diceValues))
+            println(calcResults.sumNofKind(1, diceValues))
         }
     }
 
@@ -148,6 +173,11 @@ class MainActivity : AppCompatActivity() {
                 diceFaces[i].setImageResource(diceNormalIcons[diceValues[i]-1])
             }
         }
+    }
+
+    fun optionChosen() {
+        roundCounter++
+        diceRollCounter = 0
     }
 
     fun rollDice() {
