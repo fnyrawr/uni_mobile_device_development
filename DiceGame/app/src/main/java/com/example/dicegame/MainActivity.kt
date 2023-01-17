@@ -114,7 +114,6 @@ class MainActivity : AppCompatActivity() {
                 diceFaces[i].setImageResource(diceNormalIcons[diceValues[i]-1])
             }
         }
-        println("Dice 1: " + diceValues[0] + "\nDice 2: " + diceValues[1] + "\nDice 3: " + diceValues[2] + "\nDice 4: " + diceValues[3] + "\nDice 5: " + diceValues[4])
     }
 
     fun rollDice() {
@@ -128,13 +127,13 @@ class MainActivity : AppCompatActivity() {
         updateDice()
 
         if(roundCounter == 1) {
-            roundIndicator.setImageResource(diceNormalIcons[0])
+            roundIndicator.setImageResource(diceChosenIcons[0])
         }
         if(roundCounter == 2) {
-            roundIndicator.setImageResource(diceNormalIcons[1])
+            roundIndicator.setImageResource(diceChosenIcons[1])
         }
         if(roundCounter == 3) {
-            roundIndicator.setImageResource(diceNormalIcons[2])
+            roundIndicator.setImageResource(diceChosenIcons[2])
         }
     }
 
