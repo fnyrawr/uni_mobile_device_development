@@ -148,6 +148,8 @@ class MainActivity : AppCompatActivity() {
         buttonAces.setOnClickListener() {
             val calcResults = CalculateResults()
             println(calcResults.sumNofKind(1, diceValues))
+            buttonAces.setImageResource(R.drawable.button_pressed)
+            Handler(Looper.getMainLooper()).postDelayed({ buttonAces.setImageResource(R.drawable.button_normal) }, 500)
         }
     }
 

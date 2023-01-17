@@ -215,6 +215,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewAces" />
             </androidx.cardview.widget.CardView>
 
@@ -256,6 +257,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewTwos" />
             </androidx.cardview.widget.CardView>
 
@@ -296,6 +298,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewThrees" />
             </androidx.cardview.widget.CardView>
 
@@ -336,6 +339,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewFours" />
             </androidx.cardview.widget.CardView>
 
@@ -376,6 +380,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewFives" />
             </androidx.cardview.widget.CardView>
 
@@ -416,6 +421,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewSixes" />
             </androidx.cardview.widget.CardView>
 
@@ -513,6 +519,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewThreeOfKind" />
             </androidx.cardview.widget.CardView>
 
@@ -553,6 +560,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewFourOfKind" />
             </androidx.cardview.widget.CardView>
 
@@ -593,6 +601,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewFullHouse" />
             </androidx.cardview.widget.CardView>
 
@@ -633,6 +642,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewSmallStraight" />
             </androidx.cardview.widget.CardView>
 
@@ -673,6 +683,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewLargeStraight" />
             </androidx.cardview.widget.CardView>
 
@@ -713,6 +724,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewFiveOfKind" />
             </androidx.cardview.widget.CardView>
 
@@ -753,6 +765,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/button_normal"
                     android:id="@+id/imageViewChance" />
             </androidx.cardview.widget.CardView>
 
