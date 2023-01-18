@@ -63,7 +63,7 @@ class CalculateResults {
             for(j in 0..4) {
                 if(diceValues[j] == i) count++
 
-                if(count > 4) return 5*i
+                if(count > 4) return 50
             }
         }
         return 0
