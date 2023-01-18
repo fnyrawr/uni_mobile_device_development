@@ -1,5 +1,9 @@
 package com.example.dicegame
 
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,7 +12,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
+
 class MainActivity : AppCompatActivity() {
+    // sensor
+    private var sensorEnabled = true
     private val diceNormalIcons: MutableList<Int> = ArrayList()
     private val diceChosenIcons: MutableList<Int> = ArrayList()
     private var diceFaces: MutableList<ImageView> = ArrayList()
@@ -62,6 +69,34 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+        val sensorShake = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        val sensorEventListener: SensorEventListener = object : SensorEventListener {
+            override fun onSensorChanged(sensorEvent: SensorEvent) {
+                if (sensorEvent != null) {
+                    if(sensorEnabled) {
+                        val x_accl = sensorEvent.values[0]
+                        val y_accl = sensorEvent.values[1]
+                        val z_accl = sensorEvent.values[2]
+                        val floatSum = Math.abs(x_accl) + Math.abs(y_accl) + Math.abs(z_accl)
+                        println(floatSum)
+                        if (floatSum > 14) {
+                            sensorEnabled = true
+                            rollDice()
+                        }
+                    }
+                }
+            }
+
+            override fun onAccuracyChanged(sensor: Sensor, i: Int) {
+            }
+        }
+        sensorManager.registerListener(
+            sensorEventListener,
+            sensorShake,
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
 
         diceNormalIcons.add(R.drawable.dice_one)
         diceNormalIcons.add(R.drawable.dice_two)
@@ -334,6 +369,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun resetScore() {
+        sensorEnabled = true
         buttonRollDice.isEnabled = true
         diceRollCounter = 0
         roundIndicator.setImageResource(0)
@@ -357,7 +393,13 @@ class MainActivity : AppCompatActivity() {
         diceRollCounter++
 
         if(diceRollCounter >= 3) {
+            sensorEnabled = false
             buttonRollDice.isEnabled = false
+        }
+        else {
+            sensorEnabled = false
+
+            Handler(Looper.getMainLooper()).postDelayed({ sensorEnabled = true }, 3000)
         }
 
         // animateDice()
