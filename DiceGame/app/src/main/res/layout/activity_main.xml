@@ -1,858 +1,902 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:fillViewport="true">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/dicenicer_background">
-    </LinearLayout>
-
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tableDice"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="30dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        tools:context=".MainActivity"
+        android:background="@drawable/dicenicer_background">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableDice"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardRoundIndicator"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:cardCornerRadius="15dp"
+                    android:layout_margin="5dp"
+                    app:cardElevation="10dp">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/roundIndicatorImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dice_clear">
+                    </androidx.appcompat.widget.AppCompatImageView>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textViewRound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/brown"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="25dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cardRoundIndicator"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDice1"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:cardCornerRadius="15dp"
+                    android:layout_margin="5dp"
+                    app:cardElevation="10dp">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/diceOneIndicatorImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dice_clear">
+                    </androidx.appcompat.widget.AppCompatImageView>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDice2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toEndOf="@+id/cardCupDice1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:cardCornerRadius="15dp"
+                    android:layout_margin="5dp"
+                    app:cardElevation="10dp">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/diceTwoIndicatorImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dice_clear">
+                    </androidx.appcompat.widget.AppCompatImageView>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDice3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toEndOf="@+id/cardCupDice2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:cardCornerRadius="15dp"
+                    android:layout_margin="5dp"
+                    app:cardElevation="10dp">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/diceThreeIndicatorImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dice_clear">
+                    </androidx.appcompat.widget.AppCompatImageView>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDice4"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toEndOf="@+id/cardCupDice3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:cardCornerRadius="15dp"
+                    android:layout_margin="5dp"
+                    app:cardElevation="10dp">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/diceFourIndicatorImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dice_clear">
+                    </androidx.appcompat.widget.AppCompatImageView>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDice5"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toEndOf="@+id/cardCupDice4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:cardCornerRadius="15dp"
+                    android:layout_margin="5dp"
+                    app:cardElevation="10dp">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/diceFiveIndicatorImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dice_clear">
+                    </androidx.appcompat.widget.AppCompatImageView>
+                </androidx.cardview.widget.CardView>
+
+            </TableRow>
+        </TableLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableButtons"
+            app:layout_constraintTop_toBottomOf="@+id/tableDice"
+            app:layout_constraintStart_toStartOf="@+id/tableDice"
+            app:layout_constraintEnd_toEndOf="@+id/tableDice">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardRoundIndicator"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                android:layout_margin="5dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/roundIndicatorImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/dice_clear">
-                </androidx.appcompat.widget.AppCompatImageView>
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/textView"
+            <Button
+                android:id="@+id/buttonRollDice"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Round"
-                android:textColor="@color/brown"
-                android:textSize="30dp"
+                android:layout_marginTop="3dp"
+                android:text="Roll\nthe dice"
+                android:textSize="20dp"
                 android:textStyle="bold"
-                android:layout_marginEnd="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/cardRoundIndicator"
+                android:textColor="@color/gold"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/buttonResetScore"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Reset\nscore"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/gold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewScoreHint"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAlignment="center"
+                android:textColor="@color/brown" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardDice1"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                android:layout_margin="5dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/diceOneIndicatorImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/dice_clear">
-                </androidx.appcompat.widget.AppCompatImageView>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardDice2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toEndOf="@+id/cardCupDice1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                android:layout_margin="5dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/diceTwoIndicatorImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/dice_clear">
-                </androidx.appcompat.widget.AppCompatImageView>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardDice3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toEndOf="@+id/cardCupDice2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                android:layout_margin="5dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/diceThreeIndicatorImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/dice_clear">
-                </androidx.appcompat.widget.AppCompatImageView>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardDice4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toEndOf="@+id/cardCupDice3"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                android:layout_margin="5dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/diceFourIndicatorImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/dice_clear">
-                </androidx.appcompat.widget.AppCompatImageView>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardDice5"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toEndOf="@+id/cardCupDice4"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                android:layout_margin="5dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/diceFiveIndicatorImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/dice_clear">
-                </androidx.appcompat.widget.AppCompatImageView>
-            </androidx.cardview.widget.CardView>
-
-        </TableRow>
-    </TableLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/tableButtons"
-        app:layout_constraintTop_toBottomOf="@+id/tableDice"
-        app:layout_constraintStart_toStartOf="@+id/tableDice"
-        app:layout_constraintEnd_toEndOf="@+id/tableDice">
-
-        <Button
-            android:id="@+id/buttonRollDice"
-            style="@style/Widget.AppCompat.Button.Borderless"
+        <TableLayout
+            android:id="@+id/tableLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="Roll\nthe dice"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/gold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/buttonResetScore"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="Reset\nscore"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/gold"
+            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableButtons">
 
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewAces"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Aces"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Total 1s"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreAces"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewTwos"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Twos"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Total 2s"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreTwos"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewThrees"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Threes"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Total 3s"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreThrees"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewFours"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Fours"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Total 4s"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreFours"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewFives"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Fives"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Total 5s"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreFives"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewSixes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Sixes"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Total 6s"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreSixes"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <TextView></TextView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Upper Total"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/brown"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <TextView
+                    android:id="@+id/scoreUpperTotal"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/brown"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <TextView></TextView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Bonus"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/gold"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Score 35\nif Upper Total\ngreater 63"
+                    android:paddingBottom="3dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreBonus"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/gold"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewThreeOfKind"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Three of a Kind"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Total Dice"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreThreeOfKind"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewFourOfKind"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Four of a Kind"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Total Dice"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreFourOfKind"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewFullHouse"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Full House"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Score 25"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreFullHouse"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewSmallStraight"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Small Straight"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Score 30"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreSmallStraight"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewLargeStraight"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Large Straight"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Score 40"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreLargeStraight"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewFiveOfKind"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Five of a Kind"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Score 50"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreFiveOfKind"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewChance"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_normal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Chance"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Total Dice"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/scoreChance"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <TextView></TextView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Lower Total"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/brown"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:id="@+id/scoreLowerTotal"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/brown"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp">
+
+                <TextView></TextView>
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text="Total"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/gold"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:paddingHorizontal="10dip"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:id="@+id/scoreTotal"
+                    android:layout_marginLeft="10dp"
+                    android:paddingHorizontal="10dip"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/gold"
+                    android:textStyle="bold" />
+            </TableRow>
+
+        </TableLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tableButtons"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="30dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewAces" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Aces"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Total 1s"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreAces"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewTwos" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Twos"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Total 2s"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreTwos"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewThrees" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Threes"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Total 3s"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreThrees"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewFours" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Fours"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Total 4s"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreFours"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewFives" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Fives"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Total 5s"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreFives"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewSixes" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Sixes"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Total 6s"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreSixes"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <TextView></TextView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Upper Total"
-                android:textColor="@color/brown"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreUpperTotal"
-                android:textColor="@color/brown"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <TextView></TextView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Bonus"
-                android:textColor="@color/gold"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Score 35\nif Upper Total\ngreater 63"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreBonus"
-                android:textColor="@color/gold"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewThreeOfKind" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Three of a Kind"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Total Dice"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreThreeOfKind"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewFourOfKind" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Four of a Kind"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Total Dice"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreFourOfKind"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewFullHouse" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Full House"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Score 25"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreFullHouse"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewSmallStraight" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Small Straight"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Score 30"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreSmallStraight"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewLargeStraight" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Large Straight"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Score 40"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreLargeStraight"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewFiveOfKind" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Five of a Kind"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Score 50"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreFiveOfKind"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_normal"
-                    android:id="@+id/imageViewChance" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Chance"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Total Dice"
-                android:textColor="@color/grey"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreChance"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <TextView></TextView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Lower Total"
-                android:textColor="@color/brown"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreLowerTotal"
-                android:textColor="@color/brown"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <TextView></TextView>
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text="Total"
-                android:textColor="@color/gold"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-            <TextView
-                android:paddingHorizontal="10dip"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/scoreTotal"
-                android:textColor="@color/gold"
-                android:textStyle="bold"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </TableRow>
-
-    </TableLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

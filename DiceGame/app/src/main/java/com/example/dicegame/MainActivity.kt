@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textViewScoreBonus: TextView
     private lateinit var textViewScoreLowerTotal: TextView
     private lateinit var textViewScoreTotal: TextView
+    private lateinit var textViewScoreHint: TextView
+    private lateinit var textViewRound: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,8 +82,7 @@ class MainActivity : AppCompatActivity() {
                         val y_accl = sensorEvent.values[1]
                         val z_accl = sensorEvent.values[2]
                         val floatSum = Math.abs(x_accl) + Math.abs(y_accl) + Math.abs(z_accl)
-                        println(floatSum)
-                        if (floatSum > 14) {
+                        if (floatSum > 50) {
                             sensorEnabled = true
                             rollDice()
                         }
@@ -145,6 +146,8 @@ class MainActivity : AppCompatActivity() {
         textViewScoreBonus = findViewById<TextView>(R.id.scoreBonus)
         textViewScoreLowerTotal = findViewById<TextView>(R.id.scoreLowerTotal)
         textViewScoreTotal = findViewById<TextView>(R.id.scoreTotal)
+        textViewScoreHint = findViewById<TextView>(R.id.textViewScoreHint)
+        textViewRound = findViewById<TextView>(R.id.textViewRound)
 
         val imageViewOne = findViewById<ImageView>(R.id.diceOneIndicatorImg)
         val imageViewTwo = findViewById<ImageView>(R.id.diceTwoIndicatorImg)
@@ -349,21 +352,60 @@ class MainActivity : AppCompatActivity() {
             if(!diceChosen[i]) {
                 // only get new random number if not chosen to hold
                 diceValues[i] = (1..6).random()
-                diceFaces[i].setImageResource(diceNormalIcons[diceValues[i]-1])
             }
         }
+        updateDiceFaces()
+        updateScoreHint()
+    }
+
+    fun updateDiceFaces() {
+        textViewRound.text = "Round"
+        if(diceRollCounter == 1) {
+            roundIndicator.setImageResource(diceChosenIcons[0])
+        }
+        if(diceRollCounter == 2) {
+            roundIndicator.setImageResource(diceChosenIcons[1])
+        }
+        if(diceRollCounter == 3) {
+            roundIndicator.setImageResource(diceChosenIcons[2])
+        }
+
+        for(i in 0..4) {
+            if(!diceChosen[i]) diceFaces[i].setImageResource(diceNormalIcons[diceValues[i]-1])
+            else diceFaces[i].setImageResource(diceChosenIcons[diceValues[i]-1])
+        }
+    }
+
+    fun resetDiceFaces() {
+        // clear dice faces
+        for (i in 0..4) {
+            diceChosen[i] = false
+            diceFaces[i].setImageResource(0)
+        }
+        roundIndicator.setImageResource(0)
+        textViewRound.text = ""
     }
 
     fun optionChosen() {
         updateScore()
+        resetDiceFaces()
         roundCounter++
         diceRollCounter = 0
 
         if(roundCounter < 13) {
             buttonRollDice.isEnabled = true
-            // clear dice faces
-            for (i in 0..4) {
+            buttonRollDice.setTextColor(resources.getColor(R.color.gold))
+            sensorEnabled = true
+        }
+        else {
+            buttonRollDice.isEnabled = false
+            buttonRollDice.setTextColor(resources.getColor(R.color.grey))
+            sensorEnabled = false
+            textViewRound.text = "Game Over"
+            roundIndicator.setImageResource(0)
+            for(i in 0 .. 4) {
                 diceChosen[i] = false
+                diceFaces[i].setImageResource(0)
             }
         }
     }
@@ -371,7 +413,9 @@ class MainActivity : AppCompatActivity() {
     fun resetScore() {
         sensorEnabled = true
         buttonRollDice.isEnabled = true
+        buttonRollDice.setTextColor(resources.getColor(R.color.gold))
         diceRollCounter = 0
+        roundCounter = 0
         roundIndicator.setImageResource(0)
         // clear dice faces
         for(i in 0 .. 4) {
@@ -392,28 +436,18 @@ class MainActivity : AppCompatActivity() {
     fun rollDice() {
         diceRollCounter++
 
-        if(diceRollCounter >= 3) {
+        if(diceRollCounter > 2) {
+            buttonRollDice.setTextColor(resources.getColor(R.color.grey))
             sensorEnabled = false
             buttonRollDice.isEnabled = false
         }
         else {
             sensorEnabled = false
-
-            Handler(Looper.getMainLooper()).postDelayed({ sensorEnabled = true }, 3000)
+            Handler(Looper.getMainLooper()).postDelayed({ sensorEnabled = true }, 1000)
         }
 
         // animateDice()
         updateDice()
-
-        if(diceRollCounter == 1) {
-            roundIndicator.setImageResource(diceChosenIcons[0])
-        }
-        if(diceRollCounter == 2) {
-            roundIndicator.setImageResource(diceChosenIcons[1])
-        }
-        if(diceRollCounter == 3) {
-            roundIndicator.setImageResource(diceChosenIcons[2])
-        }
     }
 
     fun animateDice() {
@@ -429,6 +463,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun updateScore() {
+        textViewScoreHint.text = ""
         upperScore = 0
         lowerScore = 0
         for(i in 0..5) if(scoreArray[i] > 0) upperScore += scoreArray[i]
@@ -442,7 +477,61 @@ class MainActivity : AppCompatActivity() {
         if(total > 0) textViewScoreTotal.text = total.toString()
     }
 
+    fun updateScoreHint() {
+        val values = diceValues.clone()
+        textViewScoreHint.text = ""
+        var scoreTop = 0
+        var scoreBottom = 0
+        var textTop = ""
+        var textBottom = ""
+        scoreTop = CalculateResults().sumNofKind(1, values)
+        if(scoreTop > 2 && scoreArray[0] < 0) textTop = "Aces: $scoreTop"
+        scoreTop = CalculateResults().sumNofKind(2, values)
+        if(scoreTop > 5 && scoreArray[1] < 0) textTop = "Twos: $scoreTop"
+        scoreTop = CalculateResults().sumNofKind(3, values)
+        if(scoreTop > 8 && scoreArray[2] < 0) textTop = "Threes: $scoreTop"
+        scoreTop = CalculateResults().sumNofKind(4, values)
+        if(scoreTop > 11 && scoreArray[3] < 0) textTop = "Fours: $scoreTop"
+        scoreTop = CalculateResults().sumNofKind(5, values)
+        if(scoreTop > 14 && scoreArray[4] < 0) textTop = "Fives: $scoreTop"
+        scoreTop = CalculateResults().sumNofKind(6, values)
+        if(scoreTop > 17 && scoreArray[5] < 0) textTop = "Sixes: $scoreTop"
+
+        scoreBottom = CalculateResults().sumThreeOfAKind(values)
+        if(scoreBottom > 0 && scoreArray[6] < 0) textBottom = "Three of a Kind: $scoreBottom"
+        scoreBottom = CalculateResults().sumFourOfAKind(values)
+        if(scoreBottom > 0 && scoreArray[7] < 0) textBottom = "Four of a Kind: $scoreBottom"
+        if(CalculateResults().sumFullHouse(values) > 0 && scoreArray[8] < 0) textBottom = "Full House: 25"
+        if(CalculateResults().sumSmallStraight(values) > 0 && scoreArray[9] < 0) textBottom = "Small Straight: 30"
+        if(CalculateResults().sumLargeStraight(values) > 0 && scoreArray[10] < 0) textBottom = "Large Straight: 40"
+        if(CalculateResults().sumFiveOfAKind(values) > 0 && scoreArray[11] < 0) textBottom = "Five of a Kind: 50"
+
+        scoreBottom = CalculateResults().sumTotal(values)
+        if(textTop == "" && textBottom == "" && scoreArray[12] < 0) textBottom = "Chance: $scoreBottom"
+        if(textTop == "" && textBottom == "") textBottom =
+            if(diceRollCounter < 3) "No current options" else "No options:\nselect something\nto abandon"
+
+        if(textTop != "") textViewScoreHint.text = "$textTop\n$textBottom" else textViewScoreHint.text ="$textBottom"
+    }
+
+    fun resetButtons() {
+        buttonAces.setImageResource(R.drawable.button_normal)
+        buttonTwos.setImageResource(R.drawable.button_normal)
+        buttonThrees.setImageResource(R.drawable.button_normal)
+        buttonFours.setImageResource(R.drawable.button_normal)
+        buttonFives.setImageResource(R.drawable.button_normal)
+        buttonSixes.setImageResource(R.drawable.button_normal)
+        buttonThreeOfKind.setImageResource(R.drawable.button_normal)
+        buttonFourOfKind.setImageResource(R.drawable.button_normal)
+        buttonFullHouse.setImageResource(R.drawable.button_normal)
+        buttonSmallStraight.setImageResource(R.drawable.button_normal)
+        buttonLargeStraight.setImageResource(R.drawable.button_normal)
+        buttonFiveOfKind.setImageResource(R.drawable.button_normal)
+        buttonChance.setImageResource(R.drawable.button_normal)
+    }
+
     fun resetScoreboard() {
+        textViewScoreHint.text = ""
         textViewScoreAces.text = ""
         textViewScoreTwos.text = ""
         textViewScoreThrees.text = ""
@@ -461,19 +550,9 @@ class MainActivity : AppCompatActivity() {
         textViewScoreBonus.text = ""
         textViewScoreLowerTotal.text = ""
         textViewScoreTotal.text = ""
+        textViewRound.text = ""
 
-        buttonAces.setImageResource(R.drawable.button_normal)
-        buttonTwos.setImageResource(R.drawable.button_normal)
-        buttonThrees.setImageResource(R.drawable.button_normal)
-        buttonFours.setImageResource(R.drawable.button_normal)
-        buttonFives.setImageResource(R.drawable.button_normal)
-        buttonSixes.setImageResource(R.drawable.button_normal)
-        buttonThreeOfKind.setImageResource(R.drawable.button_normal)
-        buttonFourOfKind.setImageResource(R.drawable.button_normal)
-        buttonFullHouse.setImageResource(R.drawable.button_normal)
-        buttonSmallStraight.setImageResource(R.drawable.button_normal)
-        buttonLargeStraight.setImageResource(R.drawable.button_normal)
-        buttonFiveOfKind.setImageResource(R.drawable.button_normal)
-        buttonChance.setImageResource(R.drawable.button_normal)
+        resetDiceFaces()
+        resetButtons()
     }
 }
