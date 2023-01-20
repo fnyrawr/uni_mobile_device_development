@@ -350,8 +350,15 @@ class MainActivity : AppCompatActivity() {
     fun updateDice() {
         for(i in 0..4) {
             if(!diceChosen[i]) {
-                // only get new random number if not chosen to hold
+                /*
+                    only get new random number if not chosen to hold
+                    since we encountered dice tend to not change their values realistic enough
+                    we added a chance to get another random if the value does not differ from before
+                 */
+                val diceValuesOld = diceValues[i]
                 diceValues[i] = (1..6).random()
+                if(diceValues[i] == diceValuesOld && (1..100).random() > 25)
+                    diceValues[i] = (1..6).random()
             }
         }
         updateDiceFaces()
@@ -402,6 +409,7 @@ class MainActivity : AppCompatActivity() {
             buttonRollDice.setTextColor(resources.getColor(R.color.grey))
             sensorEnabled = false
             textViewRound.text = "Game Over"
+            textViewScoreHint.text = "Total Score $total"
             roundIndicator.setImageResource(0)
             for(i in 0 .. 4) {
                 diceChosen[i] = false
