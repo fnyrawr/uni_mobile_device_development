@@ -74,8 +74,8 @@ class CalculateResults {
         // check if condition is met
         diceValues.sort()
         if(
-            // first two and last two dices have same values
-            (diceValues[0] == diceValues[1] && diceValues[3] == diceValues[4]) &&
+            // first two and last two dices have same values and pairs 1-2 differ from 4-5
+            (diceValues[0] == diceValues[1] && diceValues[3] == diceValues[4]) && (diceValues[0] != diceValues[4]) &&
             // third dice is either same value as first or last
             (diceValues[1] == diceValues[2] || diceValues[2] == diceValues[3])
         ) return 25

@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -441,7 +442,7 @@ class MainActivity : AppCompatActivity() {
         resetScoreboard()
     }
 
-    fun rollDice() {
+    fun rollDice() = runBlocking {
         diceRollCounter++
 
         if(diceRollCounter > 2) {
@@ -454,7 +455,8 @@ class MainActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper()).postDelayed({ sensorEnabled = true }, 1000)
         }
 
-        // animateDice()
+        //val job = launch { animateDice() }
+        // job.join()
         updateDice()
     }
 
