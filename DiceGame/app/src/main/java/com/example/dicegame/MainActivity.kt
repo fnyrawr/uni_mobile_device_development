@@ -517,9 +517,9 @@ class MainActivity : AppCompatActivity() {
         if(CalculateResults().sumFiveOfAKind(values) > 0 && scoreArray[11] < 0) textBottom = "Five of a Kind: 50"
 
         scoreBottom = CalculateResults().sumTotal(values)
-        if(textTop == "" && textBottom == "" && scoreArray[12] < 0) textBottom = "Chance: $scoreBottom"
+        if(textTop == "" && textBottom == "" && scoreArray[12] < 0 && diceRollCounter == 3) textBottom = "Chance: $scoreBottom"
         if(textTop == "" && textBottom == "") textBottom =
-            if(diceRollCounter < 3) "No current options" else "No options:\nselect something\nto abandon"
+            if(diceRollCounter < 3) "No options yet\nkeep rolling" else "No options:\nselect something\nto abandon"
 
         if(textTop != "") textViewScoreHint.text = "$textTop\n$textBottom" else textViewScoreHint.text ="$textBottom"
     }
