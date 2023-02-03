@@ -135,27 +135,29 @@ class RouteFragment : Fragment() {
                 // save route
                 val routeID = appDatabase.routeDao().insert(
                     RouteEntity(
-                        routename,
-                        routeBegin,
-                        routeEnd,
-                        routeDuration,
-                        "none"
+                        routeName = routename,
+                        begin = routeBegin,
+                        end = routeEnd,
+                        duration = routeDuration,
+                        gpx = "none"
                     )
                 )
                 // save waypoints
                 for ((i, waypoint) in waypoints.withIndex()) {
                     appDatabase.waypointDao().insert(
                         WaypointEntity(
-                            routeID,
-                            i,
-                            waypoint.latitude,
-                            waypoint.longitude,
-                            waypoint.altitude,
-                            waypoint.speed,
-                            waypoint.time
+                            routeId = routeID,
+                            index = i,
+                            latitude = waypoint.latitude,
+                            longitude = waypoint.longitude,
+                            height = waypoint.altitude,
+                            speed = waypoint.speed,
+                            timestamp = waypoint.time,
+                            provider = waypoint.provider
                         )
                     )
                 }
+                mainActivity.routes = appDatabase.routeDao().getAllRoutes()
             }
             Toast.makeText(activity, "Route saved", Toast.LENGTH_SHORT).show()
         }

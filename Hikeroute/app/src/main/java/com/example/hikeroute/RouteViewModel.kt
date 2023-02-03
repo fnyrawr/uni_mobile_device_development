@@ -17,8 +17,8 @@ class RouteViewModel(app: Application) : AndroidViewModel(app) {
         repository.update(route)
     }
 
-    fun delete(route: RouteEntity) {
-        repository.deleteAllRoutes()
+    fun deleteRoute(rID: Long) {
+        repository.deleteRoute(rID)
     }
 
     fun getAllRoutes(): List<RouteEntity> {

@@ -63,25 +63,16 @@
             app:layout_constraintTop_toBottomOf="@+id/savedRoute_duration" />
 
         <Button
-            android:id="@+id/buttonLoad"
-            style="@android:style/Widget.Material.Button"
-            android:layout_marginRight="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Load"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
             android:id="@+id/buttonDelete"
             style="@android:style/Widget.Material.Button"
-            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:text="Delete"
             app:backgroundTint="@color/yellow_700"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonLoad" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteY="48dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

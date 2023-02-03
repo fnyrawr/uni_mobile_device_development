@@ -45,13 +45,12 @@ class SavedRoutesFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_saved_routes, container, false)
 
         val mainActivity = activity as MainActivity
-        val database = AppDatabase.getInstance(mainActivity)
-        val routes = database.routeDao().getAllRoutes()
+
 
         recyclerViewSavedRoutes = view.findViewById<RecyclerView>(R.id.recyclerView_savedRoutes)
         savedRoutesLayoutManager = LinearLayoutManager(this.context)
         recyclerViewSavedRoutes.layoutManager = savedRoutesLayoutManager
-        savedRoutesAdapter = SavedRoutesRecyclerAdapter(routes)
+        savedRoutesAdapter = SavedRoutesRecyclerAdapter(mainActivity.routes)
         recyclerViewSavedRoutes.adapter = savedRoutesAdapter
 
         return view

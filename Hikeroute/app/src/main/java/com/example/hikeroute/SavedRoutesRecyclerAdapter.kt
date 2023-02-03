@@ -4,8 +4,8 @@ import android.location.Location
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,6 +29,37 @@ internal class SavedRoutesRecyclerAdapter(var routes: List<RouteEntity>) : Recyc
         holder.savedRouteEnd.text = "End: ${routes[position].end}"
         holder.savedRouteDuration.text = "Duration: ${routes[position].duration}"
         holder.savedRouteGPX.text = "GPX: ${routes[position].gpx}"
+
+        val id = routes[position].id
+        val mainActivity = holder.itemView.context as MainActivity
+        var appDatabase = AppDatabase.getInstance(mainActivity)
+
+        // load waypoints on click
+        holder.itemView.setOnClickListener {
+            if (id != null) {
+                val waypoints = appDatabase.waypointDao().getByRouteID(id)
+                for((i, waypoint) in waypoints.withIndex()) {
+                    var wp = Location(
+                        waypoint.provider
+                    )
+                    wp.latitude = waypoint.latitude
+                    wp.longitude = waypoint.longitude
+                    wp.altitude = waypoint.height
+                    wp.speed = waypoint.speed
+                    wp.time = waypoint.timestamp
+                    mainActivity.waypoints.add(wp)
+                }
+            }
+        }
+
+        holder.buttonDelete.setOnClickListener {
+            if (id != null) {
+                appDatabase.routeDao().deleteRoute(id.toLong())
+                appDatabase.waypointDao().deleteRouteWaypoints(id)
+                routes = appDatabase.routeDao().getAllRoutes()
+                this.notifyDataSetChanged()
+            }
+        }
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -37,6 +68,7 @@ internal class SavedRoutesRecyclerAdapter(var routes: List<RouteEntity>) : Recyc
         var savedRouteEnd: TextView
         var savedRouteDuration: TextView
         var savedRouteGPX: TextView
+        var buttonDelete: Button
 
         init {
             savedRouteName = itemView.findViewById(R.id.savedRoute_name)
@@ -44,6 +76,7 @@ internal class SavedRoutesRecyclerAdapter(var routes: List<RouteEntity>) : Recyc
             savedRouteEnd = itemView.findViewById(R.id.savedRoute_end)
             savedRouteDuration = itemView.findViewById(R.id.savedRoute_duration)
             savedRouteGPX = itemView.findViewById(R.id.savedRoute_gpx)
+            buttonDelete = itemView.findViewById(R.id.buttonDelete)
         }
     }
 }

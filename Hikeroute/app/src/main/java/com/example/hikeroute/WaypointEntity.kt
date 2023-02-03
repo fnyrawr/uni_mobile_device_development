@@ -1,5 +1,6 @@
 package com.example.hikeroute
 
+import android.location.Location
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -12,6 +13,6 @@ data class WaypointEntity(
     val height: Double,
     val speed: Float,
     val timestamp: Long,
-    // using Long here because Int may not be enough if several longer routes are saved
+    val provider: String,
     @PrimaryKey(autoGenerate = true) val id: Long? = null
 )

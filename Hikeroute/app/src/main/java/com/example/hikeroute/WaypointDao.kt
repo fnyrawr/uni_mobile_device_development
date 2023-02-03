@@ -7,10 +7,10 @@ interface WaypointDao {
     @Query("SELECT * FROM waypoints")
     fun getAll(): List<WaypointEntity>
 
-    @Query("SELECT * FROM waypoints WHERE routeId IN (:rID)")
+    @Query("SELECT * FROM waypoints WHERE routeId IN (:rID) ORDER BY `index`")
     fun getByRouteID(rID: Int): List<WaypointEntity>
 
-    @Query("DELETE FROM waypoints WHERE routeId IS (:rID)")
+    @Query("DELETE FROM waypoints WHERE routeId = (:rID)")
     fun deleteRouteWaypoints(rID: Int)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

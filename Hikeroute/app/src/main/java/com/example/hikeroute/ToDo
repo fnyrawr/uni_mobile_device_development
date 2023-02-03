@@ -13,7 +13,6 @@ Fragment Waypoints & Fragment POI
 
 Route creation in DB working
 Route display from DB working
-
--> Load Route (load mainActivity.waypoints)
--> Delete Route (plus delete corresponding waypoints)
+Load Route (load mainActivity.waypoints) working
+Delete Route (plus delete corresponding waypoints) working
 -> POI

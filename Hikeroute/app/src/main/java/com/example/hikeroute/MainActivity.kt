@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity(), LocationListener {
     lateinit var routeName: String
     lateinit var viewPagerAdapter: ViewPagerAdapter
     lateinit var locationManager: LocationManager
+    lateinit var database: AppDatabase
+    lateinit var routes: List<RouteEntity>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +60,9 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }.attach()
 
         getLocation()
+
+        database = AppDatabase.getInstance(this)
+        routes = database.routeDao().getAllRoutes()
     }
 
     private fun getLocation() {

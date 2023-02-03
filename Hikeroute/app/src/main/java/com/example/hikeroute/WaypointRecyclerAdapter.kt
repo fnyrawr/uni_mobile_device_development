@@ -47,4 +47,6 @@ internal class WaypointRecyclerAdapter(var waypoints: MutableList<Location>) : R
             waypointTimestamp = itemView.findViewById(R.id.waypoint_timestamp)
         }
     }
+
+    
 }

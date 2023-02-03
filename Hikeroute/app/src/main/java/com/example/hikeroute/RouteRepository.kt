@@ -26,8 +26,8 @@ class RouteRepository(application: Application) {
         subscribeOnBackground { routeDao.delete(route) }
     }
 
-    fun deleteAllRoutes() {
-        subscribeOnBackground { routeDao.deleteAllRoutes() }
+    fun deleteRoute(rID: Long) {
+        subscribeOnBackground { routeDao.deleteRoute(rID) }
     }
 
     fun getAllRoutes(): List<RouteEntity> {
