@@ -5,9 +5,8 @@ import androidx.room.*
 
 @Dao
 interface RouteDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(route: RouteEntity)
+    fun insert(route: RouteEntity): Long
 
     @Update
     fun update(route: RouteEntity)
@@ -15,9 +14,9 @@ interface RouteDao {
     @Delete
     fun delete(route: RouteEntity)
 
-    @Query("delete from routes")
+    @Query("DELETE FROM routes")
     fun deleteAllRoutes()
 
-    @Query("select * from routes order by begin, end")
+    @Query("SELECT * FROM routes ORDER BY begin, end")
     fun getAllRoutes(): LiveData<List<RouteEntity>>
 }

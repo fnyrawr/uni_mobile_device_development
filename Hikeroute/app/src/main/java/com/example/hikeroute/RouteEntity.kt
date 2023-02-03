@@ -10,5 +10,5 @@ data class RouteEntity(
     val end: String,
     val duration: String,
     val gpx: String,
-    @PrimaryKey(autoGenerate = true) val id: Int
+    @PrimaryKey(autoGenerate = true) val id: Int? = null
 )

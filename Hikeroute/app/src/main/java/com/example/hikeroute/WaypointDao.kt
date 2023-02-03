@@ -1,16 +1,21 @@
 package com.example.hikeroute
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
-@Entity(tableName = "waypoints")
-data class WaypointEntity(
-    val routeId: Int,
-    val index: Int,
-    val latitude: Double,
-    val longitude: Double,
-    val height: Double,
-    val speed: Double,
-    val timestamp: String,
-    @PrimaryKey(autoGenerate = true) val id: Int
-)
+@Dao
+interface WaypointDao {
+    @Query("SELECT * FROM waypoints")
+    fun getAll(): List<WaypointEntity>
+
+    @Query("SELECT * FROM waypoints WHERE routeId IN (:rID)")
+    fun getByRouteID(rID: Int): List<WaypointEntity>
+
+    @Query("DELETE FROM waypoints WHERE routeId IS (:rID)")
+    fun deleteRouteWaypoints(rID: Int)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(waypoint: WaypointEntity)
+
+    @Delete
+    fun delete(waypoint: WaypointEntity)
+}

@@ -7,7 +7,7 @@ class RouteRepository(application: Application) {
 
     private var routeDao: RouteDao
     private var allRoutes: LiveData<List<RouteEntity>>
-    private val database = RouteDatabase.getInstance(application)
+    private val database = AppDatabase.getInstance(application)
 
     init {
         routeDao = database.routeDao()

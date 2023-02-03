@@ -156,7 +156,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/buttonStartStop" />
 
             <EditText
-                android:id="@+id/plain_text_input"
+                android:id="@+id/inputRouteName"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_marginLeft="10dp"
