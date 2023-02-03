@@ -19,6 +19,7 @@ abstract class AppDatabase: RoomDatabase() {
             if(instance == null)
                 instance = Room.databaseBuilder(ctx.applicationContext, AppDatabase::class.java, "hikeroute_database")
                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build()
 
             return instance!!

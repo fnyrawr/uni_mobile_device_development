@@ -18,5 +18,8 @@ interface RouteDao {
     fun deleteAllRoutes()
 
     @Query("SELECT * FROM routes ORDER BY begin, end")
-    fun getAllRoutes(): LiveData<List<RouteEntity>>
+    fun getAllRoutes(): List<RouteEntity>
+
+    @Query("SELECT COUNT() FROM routes")
+    fun count(): Int
 }

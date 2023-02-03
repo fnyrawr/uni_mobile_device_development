@@ -21,7 +21,7 @@ class RouteViewModel(app: Application) : AndroidViewModel(app) {
         repository.deleteAllRoutes()
     }
 
-    fun getAllRoutes(): LiveData<List<RouteEntity>> {
+    fun getAllRoutes(): List<RouteEntity> {
         return allRoutes
     }
 }

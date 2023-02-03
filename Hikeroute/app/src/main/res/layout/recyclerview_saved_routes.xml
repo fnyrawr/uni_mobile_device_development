@@ -17,17 +17,18 @@
 
         <TextView
             android:id="@+id/savedRoute_name"
-            android:layout_width="378dp"
+            android:layout_width="278dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginStart="5dp"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/blue_700"/>
 
         <TextView
             android:id="@+id/savedRoute_begin"
-            android:layout_width="378dp"
+            android:layout_width="278dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/savedRoute_name"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -36,7 +37,7 @@
 
         <TextView
             android:id="@+id/savedRoute_end"
-            android:layout_width="378dp"
+            android:layout_width="278dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:textSize="11sp"
@@ -44,8 +45,8 @@
             app:layout_constraintTop_toBottomOf="@+id/savedRoute_begin" />
 
         <TextView
-            android:id="@+id/savedRoute_description"
-            android:layout_width="378dp"
+            android:id="@+id/savedRoute_duration"
+            android:layout_width="278dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:textSize="11sp"
@@ -53,22 +54,34 @@
             app:layout_constraintTop_toBottomOf="@+id/savedRoute_end" />
 
         <TextView
-            android:id="@+id/savedRoute_duration"
-            android:layout_width="378dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:textSize="11sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/savedRoute_description" />
-
-        <TextView
             android:id="@+id/savedRoute_gpx"
-            android:layout_width="378dp"
+            android:layout_width="278dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:textSize="11sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/savedRoute_duration" />
+
+        <Button
+            android:id="@+id/buttonLoad"
+            style="@android:style/Widget.Material.Button"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Load"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonDelete"
+            style="@android:style/Widget.Material.Button"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            app:backgroundTint="@color/yellow_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonLoad" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

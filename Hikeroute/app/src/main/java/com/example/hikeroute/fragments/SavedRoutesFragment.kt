@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hikeroute.AppDatabase
+import com.example.hikeroute.MainActivity
 import com.example.hikeroute.R
 import com.example.hikeroute.SavedRoutesRecyclerAdapter
 
@@ -42,10 +44,14 @@ class SavedRoutesFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_saved_routes, container, false)
 
+        val mainActivity = activity as MainActivity
+        val database = AppDatabase.getInstance(mainActivity)
+        val routes = database.routeDao().getAllRoutes()
+
         recyclerViewSavedRoutes = view.findViewById<RecyclerView>(R.id.recyclerView_savedRoutes)
         savedRoutesLayoutManager = LinearLayoutManager(this.context)
         recyclerViewSavedRoutes.layoutManager = savedRoutesLayoutManager
-        savedRoutesAdapter = SavedRoutesRecyclerAdapter()
+        savedRoutesAdapter = SavedRoutesRecyclerAdapter(routes)
         recyclerViewSavedRoutes.adapter = savedRoutesAdapter
 
         return view

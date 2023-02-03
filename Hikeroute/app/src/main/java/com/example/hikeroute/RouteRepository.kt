@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 class RouteRepository(application: Application) {
 
     private var routeDao: RouteDao
-    private var allRoutes: LiveData<List<RouteEntity>>
+    private var allRoutes: List<RouteEntity>
     private val database = AppDatabase.getInstance(application)
 
     init {
@@ -30,7 +30,7 @@ class RouteRepository(application: Application) {
         subscribeOnBackground { routeDao.deleteAllRoutes() }
     }
 
-    fun getAllRoutes(): LiveData<List<RouteEntity>> {
+    fun getAllRoutes(): List<RouteEntity> {
         return allRoutes
     }
 }
