@@ -46,7 +46,6 @@ class SavedRoutesFragment : Fragment() {
 
         val mainActivity = activity as MainActivity
 
-
         recyclerViewSavedRoutes = view.findViewById<RecyclerView>(R.id.recyclerView_savedRoutes)
         savedRoutesLayoutManager = LinearLayoutManager(this.context)
         recyclerViewSavedRoutes.layoutManager = savedRoutesLayoutManager

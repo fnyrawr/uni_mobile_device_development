@@ -13,6 +13,7 @@ import android.os.Environment
 import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
@@ -23,15 +24,17 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
     private val locationPermissionCode = 2
     var waypoints: MutableList<Location> = ArrayList()
+    var pois: MutableList<PoiEntity> = ArrayList()
     var currentLocation: Location = Location("dummyprovider")
-    lateinit var routeName: String
+    var routeId: Long = 0
     lateinit var viewPagerAdapter: ViewPagerAdapter
     lateinit var locationManager: LocationManager
     lateinit var database: AppDatabase
-    lateinit var routes: List<RouteEntity>
+    lateinit var routes: MutableList<RouteEntity>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main)
 
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout)

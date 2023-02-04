@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import com.example.hikeroute.MainActivity
 import com.example.hikeroute.R
 import com.example.hikeroute.LatLng
@@ -91,7 +92,6 @@ class VisualFragment : Fragment() {
         }
 
         // set display units
-
         var min_utms = getUTM(minLat, minLon).split(" ")
         var max_utms = getUTM(maxLat, maxLon).split(" ")
         var deltaLon = max_utms[2].toDouble() - min_utms[2].toDouble()
@@ -100,6 +100,8 @@ class VisualFragment : Fragment() {
 
         var xPrev = 0.0
         var yPrev = 0.0
+        context?.let { ContextCompat.getColor(it, R.color.blue_700) }?.let { paint.color = it }
+        paint.strokeWidth = 5F
 
         for(waypoint in waypoints) {
             var split_utms = getUTM(waypoint.latitude, waypoint.longitude).split(" ")

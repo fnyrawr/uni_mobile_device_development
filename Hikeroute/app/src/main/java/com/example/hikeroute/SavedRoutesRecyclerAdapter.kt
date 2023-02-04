@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import java.text.SimpleDateFormat
-import java.util.*
 
-internal class SavedRoutesRecyclerAdapter(var routes: List<RouteEntity>) : RecyclerView.Adapter<SavedRoutesRecyclerAdapter.ViewHolder>() {
+internal class SavedRoutesRecyclerAdapter(var routes: MutableList<RouteEntity>) : RecyclerView.Adapter<SavedRoutesRecyclerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedRoutesRecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_saved_routes, parent, false)
@@ -22,8 +21,6 @@ internal class SavedRoutesRecyclerAdapter(var routes: List<RouteEntity>) : Recyc
     }
 
     override fun onBindViewHolder(holder: SavedRoutesRecyclerAdapter.ViewHolder, position: Int) {
-        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
-
         holder.savedRouteName.text = routes[position].routeName
         holder.savedRouteBegin.text = "Begin: ${routes[position].begin}"
         holder.savedRouteEnd.text = "End: ${routes[position].end}"
@@ -37,6 +34,7 @@ internal class SavedRoutesRecyclerAdapter(var routes: List<RouteEntity>) : Recyc
         // load waypoints on click
         holder.itemView.setOnClickListener {
             if (id != null) {
+                mainActivity.waypoints.clear()
                 val waypoints = appDatabase.waypointDao().getByRouteID(id)
                 for((i, waypoint) in waypoints.withIndex()) {
                     var wp = Location(
@@ -49,6 +47,10 @@ internal class SavedRoutesRecyclerAdapter(var routes: List<RouteEntity>) : Recyc
                     wp.time = waypoint.timestamp
                     mainActivity.waypoints.add(wp)
                 }
+                val pois = appDatabase.poiDao().getRoutePois(id.toLong())
+                mainActivity.pois = pois
+                mainActivity.routeId = id.toLong()
+                Toast.makeText(holder.itemView.context, "Route loaded", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -58,6 +60,10 @@ internal class SavedRoutesRecyclerAdapter(var routes: List<RouteEntity>) : Recyc
                 appDatabase.waypointDao().deleteRouteWaypoints(id)
                 routes = appDatabase.routeDao().getAllRoutes()
                 this.notifyDataSetChanged()
+                mainActivity.waypoints.clear()
+                mainActivity.pois.clear()
+                mainActivity.routeId = 0
+                Toast.makeText(holder.itemView.context, "Route deleted", Toast.LENGTH_SHORT).show()
             }
         }
     }

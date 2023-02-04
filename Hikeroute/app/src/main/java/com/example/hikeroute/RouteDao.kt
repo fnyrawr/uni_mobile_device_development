@@ -17,7 +17,7 @@ interface RouteDao {
     fun deleteRoute(rID: Long)
 
     @Query("SELECT * FROM routes ORDER BY begin, end")
-    fun getAllRoutes(): List<RouteEntity>
+    fun getAllRoutes(): MutableList<RouteEntity>
 
     @Query("SELECT COUNT() FROM routes")
     fun count(): Int

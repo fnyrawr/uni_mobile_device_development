@@ -5,7 +5,10 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/recyclerView_waypoints"
-    android:layout_margin="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="2dp"
     android:elevation="3dp"
     app:contentPadding="4dp">
 
@@ -21,9 +24,9 @@
             android:layout_height="20dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginStart="5dp"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/blue_700" />
 
         <TextView
             android:id="@+id/waypoint_longitude"
@@ -31,7 +34,6 @@
             android:layout_height="20dp"
             app:layout_constraintTop_toBottomOf="@+id/waypoint_index"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginStart="5dp"
             android:textSize="15sp" />
 
         <TextView
@@ -40,7 +42,6 @@
             android:layout_height="20dp"
             app:layout_constraintTop_toTopOf="@+id/waypoint_longitude"
             app:layout_constraintLeft_toRightOf="@+id/waypoint_longitude"
-            android:layout_marginStart="5dp"
             android:textSize="15sp" />
 
         <TextView
@@ -58,7 +59,6 @@
             android:layout_height="20dp"
             app:layout_constraintTop_toTopOf="@+id/waypoint_latitude"
             app:layout_constraintLeft_toRightOf="@+id/waypoint_latitude"
-            android:layout_marginStart="5dp"
             android:textSize="15sp" />
 
         <TextView

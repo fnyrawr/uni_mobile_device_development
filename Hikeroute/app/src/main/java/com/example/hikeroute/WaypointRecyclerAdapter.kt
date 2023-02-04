@@ -22,12 +22,12 @@ internal class WaypointRecyclerAdapter(var waypoints: MutableList<Location>) : R
     override fun onBindViewHolder(holder: WaypointRecyclerAdapter.ViewHolder, position: Int) {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
 
-        holder.waypointIndex.text = (position + 1).toString()
-        holder.waypointLongitude.text = String.format("%.7f",waypoints[position].longitude)
-        holder.waypointLatitude.text = String.format("%.7f",waypoints[position].latitude)
-        holder.waypointHeight.text = "${waypoints[position].altitude.toString()} m"
-        holder.waypointSpeed.text = String.format("%.1f km/h", waypoints[position].speed * 3.6)
-        holder.waypointTimestamp.text = simpleDateFormat.format(waypoints[position].time)
+        holder.waypointIndex.text = "Waypoint " + (position + 1).toString()
+        holder.waypointLongitude.text = "Longitude: " + String.format("%.7f",waypoints[position].longitude)
+        holder.waypointLatitude.text = "Latitude: " + String.format("%.7f",waypoints[position].latitude)
+        holder.waypointHeight.text = "Height: " + "${waypoints[position].altitude.toString()} m"
+        holder.waypointSpeed.text = "Speed: " + String.format("%.1f km/h", waypoints[position].speed * 3.6)
+        holder.waypointTimestamp.text = "Timestamp: " + simpleDateFormat.format(waypoints[position].time)
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -48,5 +48,5 @@ internal class WaypointRecyclerAdapter(var waypoints: MutableList<Location>) : R
         }
     }
 
-    
+
 }
