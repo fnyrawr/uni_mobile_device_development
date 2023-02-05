@@ -16,11 +16,6 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 /**
  * A simple [Fragment] subclass.
  * Use the [RouteFragment.newInstance] factory method to
@@ -35,14 +30,6 @@ class RouteFragment : Fragment() {
     private val timer = Timer()
     private var fragmentActive = false
     private var lastLocation: Location = Location("dummyprovider")
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

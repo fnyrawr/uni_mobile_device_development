@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 internal class WaypointRecyclerAdapter(var waypoints: MutableList<Location>) : RecyclerView.Adapter<WaypointRecyclerAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WaypointRecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_waypoints, parent, false)
@@ -28,6 +29,14 @@ internal class WaypointRecyclerAdapter(var waypoints: MutableList<Location>) : R
         holder.waypointHeight.text = "Height: " + "${waypoints[position].altitude.toString()} m"
         holder.waypointSpeed.text = "Speed: " + String.format("%.1f km/h", waypoints[position].speed * 3.6)
         holder.waypointTimestamp.text = "Timestamp: " + simpleDateFormat.format(waypoints[position].time)
+
+        // create poi on item click
+        val waypoint = waypoints[position]
+        holder.itemView.setOnClickListener {
+            if (waypoint != null) {
+                // ToDo: open AddPoiFragment here
+            }
+        }
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
