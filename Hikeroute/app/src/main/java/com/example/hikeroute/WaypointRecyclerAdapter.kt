@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hikeroute.fragments.AddPoiFragment
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,6 +24,8 @@ internal class WaypointRecyclerAdapter(var waypoints: MutableList<Location>) : R
     override fun onBindViewHolder(holder: WaypointRecyclerAdapter.ViewHolder, position: Int) {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
 
+        val mainActivity = holder.itemView.context as MainActivity
+
         holder.waypointIndex.text = "Waypoint " + (position + 1).toString()
         holder.waypointLongitude.text = "Longitude: " + String.format("%.7f",waypoints[position].longitude)
         holder.waypointLatitude.text = "Latitude: " + String.format("%.7f",waypoints[position].latitude)
@@ -34,7 +37,8 @@ internal class WaypointRecyclerAdapter(var waypoints: MutableList<Location>) : R
         val waypoint = waypoints[position]
         holder.itemView.setOnClickListener {
             if (waypoint != null) {
-                // ToDo: open AddPoiFragment here
+                // ToDo: open AddPoiFragment here (code below not working)
+                mainActivity.supportFragmentManager.beginTransaction().replace(R.id.fragmentSavedRoutes, AddPoiFragment()).commit()
             }
         }
     }

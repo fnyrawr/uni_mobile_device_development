@@ -20,7 +20,7 @@ Delete Route (plus delete corresponding waypoints) working
 POI:
 - POI Entity, Dao (done)
 - POI RecyclerView (done)
-- Click on Waypoint to add POI
+- Click on Waypoint to add POI (work in progress)
 - Open Camera
 - After taking Photo save as RouteName_Timestamp_POI.JPG
     also give possibility to link existing photo
