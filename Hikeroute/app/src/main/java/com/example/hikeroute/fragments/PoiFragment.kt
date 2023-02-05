@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hikeroute.MainActivity
 import com.example.hikeroute.PoiRecyclerAdapter
 import com.example.hikeroute.R
-import com.example.hikeroute.SavedRoutesRecyclerAdapter
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
