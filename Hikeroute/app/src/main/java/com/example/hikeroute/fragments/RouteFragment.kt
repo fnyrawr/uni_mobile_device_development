@@ -130,8 +130,12 @@ class RouteFragment : Fragment() {
         }
         val routeBegin = simpleDateFormat.format(waypoints[0].time)
         val routeEnd = simpleDateFormat.format(waypoints[waypoints.size-1].time)
-        val timeDiff = Date(waypoints[waypoints.size-1].time - waypoints[0].time)
-        val routeDuration = "${"%02d".format(timeDiff.hours)}:${"%02d".format(timeDiff.minutes)}:${"%02d".format(timeDiff.seconds)}"
+        val timeDiff = waypoints[waypoints.size-1].time - waypoints[0].time
+        val totalSecs = timeDiff / 1000
+        val hours = totalSecs / 3600
+        val minutes = (totalSecs % 3600) / 60
+        val seconds = totalSecs % 60
+        val routeDuration = "${"%02d".format(hours)}:${"%02d".format(minutes)}:${"%02d".format(seconds)}"
 
         if(!tracking && routename != "") {
             // save gpx file first
