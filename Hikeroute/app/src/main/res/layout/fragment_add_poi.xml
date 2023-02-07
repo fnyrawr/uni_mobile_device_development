@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/add_poi_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -77,11 +78,15 @@
                         android:text="Latitude"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                    <TextView
-                        android:id="@+id/textViewLatitude"
-                        android:text="..."
+                    <EditText
+                        android:id="@+id/inputLatitude"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_marginLeft="10dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:layout_marginRight="10dp"
+                        android:inputType="text"
+                        android:hint="Latitude"
+                        app:layout_constraintStart_toStartOf="parent" />
                 </TableRow>
 
                 <TableRow>
@@ -89,11 +94,15 @@
                         android:text="Longitude"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                    <TextView
-                        android:id="@+id/textViewLongitude"
-                        android:text="..."
+                    <EditText
+                        android:id="@+id/inputLongitude"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_marginLeft="10dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:layout_marginRight="10dp"
+                        android:inputType="text"
+                        android:hint="Longitude"
+                        app:layout_constraintStart_toStartOf="parent" />
                 </TableRow>
 
                 <TableRow>
