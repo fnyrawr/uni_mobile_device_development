@@ -1,15 +1,18 @@
 package com.example.hikeroute.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hikeroute.MainActivity
 import com.example.hikeroute.PoiRecyclerAdapter
 import com.example.hikeroute.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 /**
  * A simple [Fragment] subclass.
@@ -30,11 +33,19 @@ class PoiFragment : Fragment() {
 
         val mainActivity = activity as MainActivity
 
+        val addPoiButton = view.findViewById<FloatingActionButton>(R.id.floating_add_poi)
         recyclerViewPoi = view.findViewById<RecyclerView>(R.id.recyclerView_pois)
         poiLayoutManager = LinearLayoutManager(this.context)
         recyclerViewPoi.layoutManager = poiLayoutManager
         poiAdapter = PoiRecyclerAdapter(mainActivity.pois)
         recyclerViewPoi.adapter = poiAdapter
+
+        addPoiButton.setOnClickListener {
+            val fragment = AddPoiFragment()
+            addPoiButton.setOnClickListener {
+                // TODO
+            }
+        }
 
         return view
     }

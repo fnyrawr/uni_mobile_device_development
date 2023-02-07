@@ -10,9 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.hikeroute.MainActivity
-import com.example.hikeroute.PoiRecyclerAdapter
 import com.example.hikeroute.R
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

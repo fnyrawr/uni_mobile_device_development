@@ -33,14 +33,14 @@ internal class WaypointRecyclerAdapter(var waypoints: MutableList<Location>) : R
         holder.waypointSpeed.text = "Speed: " + String.format("%.1f km/h", waypoints[position].speed * 3.6)
         holder.waypointTimestamp.text = "Timestamp: " + simpleDateFormat.format(waypoints[position].time)
 
-        // create poi on item click
-        val waypoint = waypoints[position]
-        holder.itemView.setOnClickListener {
-            if (waypoint != null) {
-                // ToDo: open AddPoiFragment here (code below not working)
-                mainActivity.supportFragmentManager.beginTransaction().replace(R.id.fragmentSavedRoutes, AddPoiFragment()).commit()
-            }
-        }
+//        create poi on item click
+//        val waypoint = waypoints[position]
+//        holder.itemView.setOnClickListener {
+//            if (waypoint != null) {
+//                // ToDo: open AddPoiFragment here (code below not working)
+//                mainActivity.supportFragmentManager.beginTransaction().replace(R.id.fragmentSavedRoutes, AddPoiFragment()).commit()
+//            }
+//        }
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
