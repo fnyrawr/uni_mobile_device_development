@@ -1,12 +1,15 @@
 package com.example.hikeroute
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import java.io.File
 
 class PoiRecyclerAdapter(var givenpois: MutableList<PoiEntity>) : RecyclerView.Adapter<PoiRecyclerAdapter.ViewHolder>() {
     var pois: MutableList<PoiEntity> = givenpois
@@ -32,6 +35,11 @@ class PoiRecyclerAdapter(var givenpois: MutableList<PoiEntity>) : RecyclerView.A
         holder.poiLatitude.text = "Latitude: ${pois[position].latitude}"
         holder.poiTimestamp.text = "Timestamp: ${pois[position].timestamp}"
         holder.poiPhoto.text = "Photo: ${pois[position].photo}"
+        val imgFile = File("${pois[position].photo}")
+        if (imgFile.exists()) {
+            val bitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
+            holder.poiThumbnail.setImageBitmap(bitmap)
+        }
 
         holder.buttonDelete.setOnClickListener {
             val mainActivity = holder.itemView.context as MainActivity
@@ -54,6 +62,7 @@ class PoiRecyclerAdapter(var givenpois: MutableList<PoiEntity>) : RecyclerView.A
         var poiTimestamp: TextView
         var poiPhoto: TextView
         var buttonDelete: Button
+        var poiThumbnail: ImageView
 
         init {
             poiName = itemView.findViewById(R.id.poi_name)
@@ -63,6 +72,7 @@ class PoiRecyclerAdapter(var givenpois: MutableList<PoiEntity>) : RecyclerView.A
             poiTimestamp = itemView.findViewById(R.id.poi_timestamp)
             poiPhoto = itemView.findViewById(R.id.poi_photo)
             buttonDelete = itemView.findViewById(R.id.buttonDelete)
+            poiThumbnail = itemView.findViewById(R.id.poi_thumbnail)
         }
     }
 }

@@ -120,6 +120,9 @@ class AddPoiFragment : Fragment() {
             val mediaPath = createNewImageFile(this.requireContext())
             val image: Bitmap = data?.extras?.get("data") as Bitmap
             val file = saveBitmapToFile(image, "image/jpg", mediaPath?.absolutePath)
+            val file_path = file?.path
+            println(file_path.toString())
+            view?.findViewById<TextView>(R.id.textViewPoiPhoto)?.text = file_path.toString()
         }
     }
 
