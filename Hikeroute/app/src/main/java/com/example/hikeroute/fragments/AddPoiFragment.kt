@@ -55,20 +55,23 @@ class AddPoiFragment : Fragment() {
         poiTimestamp.text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
 
         buttonSave.setOnClickListener {
-        val manager = parentFragmentManager
-        val transaction = manager.beginTransaction()
-        val toBeReplaced = manager.findFragmentById(R.id.poi_fragment)?.id
-        if (toBeReplaced != null) {
-            transaction.replace(toBeReplaced, PoiFragment())
+            val manager = parentFragmentManager
+            val transaction = manager.beginTransaction()
+            val toBeReplaced = manager.findFragmentById(R.id.poi_fragment)?.id
+            if (toBeReplaced != null) {
+                transaction.replace(toBeReplaced, PoiFragment())
+            }
+            transaction.addToBackStack(null)
+            transaction.commit()
+
+            savePoi()
         }
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
 
         return view
     }
 
-    fun savePoi() {
+    fun savePoi(): Boolean {
+        var saved = false
         var view = this.view
         val mainActivity = activity as MainActivity
         val poiNameValue = view?.findViewById<EditText>(R.id.inputPoiName)?.text.toString().trim()
@@ -78,34 +81,34 @@ class AddPoiFragment : Fragment() {
         val poiTimeStampValue = view?.findViewById<TextView>(R.id.textViewTimestamp)?.text.toString().trim()
         val poiPhotoValue = view?.findViewById<TextView>(R.id.textViewPhoto)?.text.toString().trim()
 
-        if(poiNameValue.isNotEmpty() && poiDescriptionValue.isNotEmpty() && poiLatitudeValue.isNotEmpty() && poiLongitudeValue.isNotEmpty()) {
+        var routeId = mainActivity.routeId
+
+        if((poiNameValue.isNotEmpty() && poiDescriptionValue.isNotEmpty() && poiLatitudeValue.isNotEmpty() && poiLongitudeValue.isNotEmpty()) && routeId != "0".toLong()) {
             subscribeOnBackground {
                 // get database instance (singleton for performance reasons)
                 var appDatabase = AppDatabase.getInstance(mainActivity)
 
-                // PLEASE HELP, I DONT KNOW WHAT TODO
-                // ~Travis Scott
-
-
                 // save poi
-                val poiId = appDatabase.poiDao().insert(
+                appDatabase.poiDao().insert(
                     PoiEntity(
-                        routeId = 0,
+                        routeId = routeId,
                         name = poiNameValue,
                         description = poiDescriptionValue,
                         latitude = poiLatitudeValue.toDouble(),
                         longitude = poiLongitudeValue.toDouble(),
                         timestamp = poiTimeStampValue,
-                        photo = poiPhotoValue,
-                        id = 0
+                        photo = poiPhotoValue
                     )
                 )
+                saved = true
             }
             Toast.makeText(activity, "Poi saved", Toast.LENGTH_SHORT).show()
         }
         else {
             Toast.makeText(activity, "You cannot save with empty fields", Toast.LENGTH_SHORT).show()
         }
+
+        return saved
 
     }
 
