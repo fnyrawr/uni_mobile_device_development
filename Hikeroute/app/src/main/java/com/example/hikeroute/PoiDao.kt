@@ -13,9 +13,9 @@ interface PoiDao {
     @Delete
     fun delete(poi: PoiEntity)
 
-    @Query("DELETE FROM pois WHERE id = (:rID)")
-    fun deletePoi(rID: Long)
+    @Query("DELETE FROM pois WHERE id = (:pID)")
+    fun deletePoi(pID: Long)
 
-    @Query("SELECT * FROM pois WHERE id = (:rID) ORDER BY timestamp")
+    @Query("SELECT * FROM pois WHERE routeId = (:rID) ORDER BY timestamp")
     fun getRoutePois(rID: Long): MutableList<PoiEntity>
 }

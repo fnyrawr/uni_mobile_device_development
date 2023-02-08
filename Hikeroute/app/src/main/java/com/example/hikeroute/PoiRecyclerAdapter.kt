@@ -3,12 +3,21 @@ package com.example.hikeroute
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-internal class PoiRecyclerAdapter(var pois: MutableList<PoiEntity>) : RecyclerView.Adapter<PoiRecyclerAdapter.ViewHolder>() {
+class PoiRecyclerAdapter(var givenpois: MutableList<PoiEntity>) : RecyclerView.Adapter<PoiRecyclerAdapter.ViewHolder>() {
+    var pois: MutableList<PoiEntity> = givenpois
+
+    fun updateAdapter(pois: MutableList<PoiEntity>) {
+        this.pois = pois
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PoiRecyclerAdapter.ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_waypoints, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_pois, parent, false)
         return ViewHolder(v)
     }
 
@@ -23,6 +32,18 @@ internal class PoiRecyclerAdapter(var pois: MutableList<PoiEntity>) : RecyclerVi
         holder.poiLatitude.text = "Latitude: ${pois[position].latitude}"
         holder.poiTimestamp.text = "Timestamp: ${pois[position].timestamp}"
         holder.poiPhoto.text = "Photo: ${pois[position].photo}"
+
+        holder.buttonDelete.setOnClickListener {
+            val mainActivity = holder.itemView.context as MainActivity
+            var appDatabase = AppDatabase.getInstance(mainActivity)
+            val id = pois[position].id
+            if (id != null) {
+                appDatabase.poiDao().deletePoi(id.toLong())
+                pois = appDatabase.poiDao().getRoutePois(mainActivity.routeId)
+                this.notifyDataSetChanged()
+                Toast.makeText(holder.itemView.context, "POI deleted", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -32,6 +53,7 @@ internal class PoiRecyclerAdapter(var pois: MutableList<PoiEntity>) : RecyclerVi
         var poiLatitude: TextView
         var poiTimestamp: TextView
         var poiPhoto: TextView
+        var buttonDelete: Button
 
         init {
             poiName = itemView.findViewById(R.id.poi_name)
@@ -40,6 +62,7 @@ internal class PoiRecyclerAdapter(var pois: MutableList<PoiEntity>) : RecyclerVi
             poiLatitude = itemView.findViewById(R.id.poi_latitude)
             poiTimestamp = itemView.findViewById(R.id.poi_timestamp)
             poiPhoto = itemView.findViewById(R.id.poi_photo)
+            buttonDelete = itemView.findViewById(R.id.buttonDelete)
         }
     }
 }

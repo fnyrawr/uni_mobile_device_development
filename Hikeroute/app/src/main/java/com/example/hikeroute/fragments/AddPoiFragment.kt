@@ -1,8 +1,6 @@
 package com.example.hikeroute.fragments
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +8,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
 import com.example.hikeroute.*
-import kotlinx.android.synthetic.main.recyclerview_pois.*
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
+
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -45,26 +41,49 @@ class AddPoiFragment : Fragment() {
 
         var poiName = view.findViewById<EditText>(R.id.inputPoiName)
         var poiDescription = view.findViewById<EditText>(R.id.inputPoiDescription)
-        var poiLatitude = view.findViewById<EditText>(R.id.inputLatitude)
-        var poiLongitude = view.findViewById<EditText>(R.id.inputLongitude)
-        var poiTimestamp = view.findViewById<TextView>(R.id.textViewTimestamp)
-        var poiPhoto = view.findViewById<TextView>(R.id.textViewPhoto)
+        var poiLatitude = view.findViewById<EditText>(R.id.inputPoiLatitude)
+        var poiLongitude = view.findViewById<EditText>(R.id.inputPoiLongitude)
+        var poiTimestamp = view.findViewById<TextView>(R.id.textViewPoiTimestamp)
+        var poiPhoto = view.findViewById<TextView>(R.id.textViewPoiPhoto)
         var buttonPhoto = view.findViewById<Button>(R.id.buttonPhoto)
         var buttonSave = view.findViewById<Button>(R.id.buttonSave)
+        var buttonClose = view.findViewById<Button>(R.id.buttonClose)
 
         poiTimestamp.text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
 
         buttonSave.setOnClickListener {
+            val saved = savePoi()
+            val manager = parentFragmentManager
+            if(saved) {
+                var appDatabase = AppDatabase.getInstance(mainActivity)
+                mainActivity.pois = appDatabase.poiDao().getRoutePois(mainActivity.routeId)
+                val transaction = manager.beginTransaction()
+                val toBeReplaced = manager.findFragmentById(R.id.poi_fragment)?.id
+                val fragment = PoiFragment()
+                if (toBeReplaced != null) {
+                    transaction.replace(toBeReplaced, fragment)
+                }
+                transaction.detach(fragment)
+                transaction.attach(fragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+                Toast.makeText(activity, "Poi saved", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(activity, "Not all required information given", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        buttonClose.setOnClickListener {
             val manager = parentFragmentManager
             val transaction = manager.beginTransaction()
             val toBeReplaced = manager.findFragmentById(R.id.poi_fragment)?.id
+            val fragment = PoiFragment()
             if (toBeReplaced != null) {
-                transaction.replace(toBeReplaced, PoiFragment())
+                transaction.replace(toBeReplaced, fragment)
             }
             transaction.addToBackStack(null)
             transaction.commit()
-
-            savePoi()
         }
 
         return view
@@ -74,16 +93,17 @@ class AddPoiFragment : Fragment() {
         var saved = false
         var view = this.view
         val mainActivity = activity as MainActivity
-        val poiNameValue = view?.findViewById<EditText>(R.id.inputPoiName)?.text.toString().trim()
-        val poiDescriptionValue = view?.findViewById<EditText>(R.id.inputPoiDescription)?.text.toString().trim()
-        val poiLatitudeValue = view?.findViewById<EditText>(R.id.inputLatitude)?.text.toString().trim()
-        val poiLongitudeValue = view?.findViewById<EditText>(R.id.inputLongitude)?.text.toString().trim()
-        val poiTimeStampValue = view?.findViewById<TextView>(R.id.textViewTimestamp)?.text.toString().trim()
-        val poiPhotoValue = view?.findViewById<TextView>(R.id.textViewPhoto)?.text.toString().trim()
+        val poiName = view?.findViewById<EditText>(R.id.inputPoiName)?.text.toString().trim()
+        val poiDescription = view?.findViewById<EditText>(R.id.inputPoiDescription)?.text.toString().trim()
+        val poiLatitude = view?.findViewById<EditText>(R.id.inputPoiLatitude)?.text.toString().trim()
+        val poiLongitude = view?.findViewById<EditText>(R.id.inputPoiLongitude)?.text.toString().trim()
+        val poiTimestamp = view?.findViewById<TextView>(R.id.textViewPoiTimestamp)?.text.toString().trim()
+        val poiPhoto = view?.findViewById<TextView>(R.id.textViewPoiPhoto)?.text.toString().trim()
 
         var routeId = mainActivity.routeId
 
-        if((poiNameValue.isNotEmpty() && poiDescriptionValue.isNotEmpty() && poiLatitudeValue.isNotEmpty() && poiLongitudeValue.isNotEmpty()) && routeId != "0".toLong()) {
+        if((poiName.isNotEmpty() && poiDescription.isNotEmpty() && poiLatitude.isNotEmpty() && poiLongitude.isNotEmpty())) {
+            saved = true
             subscribeOnBackground {
                 // get database instance (singleton for performance reasons)
                 var appDatabase = AppDatabase.getInstance(mainActivity)
@@ -92,24 +112,18 @@ class AddPoiFragment : Fragment() {
                 appDatabase.poiDao().insert(
                     PoiEntity(
                         routeId = routeId,
-                        name = poiNameValue,
-                        description = poiDescriptionValue,
-                        latitude = poiLatitudeValue.toDouble(),
-                        longitude = poiLongitudeValue.toDouble(),
-                        timestamp = poiTimeStampValue,
-                        photo = poiPhotoValue
+                        name = poiName,
+                        description = poiDescription,
+                        latitude = poiLatitude.toDouble(),
+                        longitude = poiLongitude.toDouble(),
+                        timestamp = poiTimestamp,
+                        photo = poiPhoto
                     )
                 )
-                saved = true
             }
-            Toast.makeText(activity, "Poi saved", Toast.LENGTH_SHORT).show()
-        }
-        else {
-            Toast.makeText(activity, "You cannot save with empty fields", Toast.LENGTH_SHORT).show()
         }
 
         return saved
-
     }
 
 }

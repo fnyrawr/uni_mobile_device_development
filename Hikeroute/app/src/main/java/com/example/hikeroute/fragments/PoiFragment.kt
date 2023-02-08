@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,9 +24,9 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class PoiFragment : Fragment() {
-    private var poiLayoutManager: RecyclerView.LayoutManager? = null
-    private var poiAdapter: RecyclerView.Adapter<PoiRecyclerAdapter.ViewHolder>? = null
-    private lateinit var recyclerViewPoi: RecyclerView
+    var poiLayoutManager: RecyclerView.LayoutManager? = null
+    var poiAdapter: RecyclerView.Adapter<PoiRecyclerAdapter.ViewHolder>? = null
+    lateinit var recyclerViewPoi: RecyclerView
 
     companion object {
         fun newInstance(): PoiFragment {
@@ -50,14 +51,19 @@ class PoiFragment : Fragment() {
         recyclerViewPoi.adapter = poiAdapter
 
         addPoiButton.setOnClickListener {
-            val poisHeader = view.findViewById<TextView>(R.id.pois_header)
-            poisHeader.text = ""
-            val addPoiFragment = AddPoiFragment()
-            val manager = parentFragmentManager
-            val transaction = manager.beginTransaction()
-            transaction.replace(R.id.poi_fragment, addPoiFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            if(mainActivity.routeId > 0) {
+                val poisHeader = view.findViewById<TextView>(R.id.pois_header)
+                poisHeader.text = ""
+                val addPoiFragment = AddPoiFragment()
+                val manager = parentFragmentManager
+                val transaction = manager.beginTransaction()
+                transaction.replace(R.id.poi_fragment, addPoiFragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
+            else {
+                Toast.makeText(activity, "No route selected. Select saved route first.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         return view

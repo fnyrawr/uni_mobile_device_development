@@ -35,6 +35,7 @@ internal class SavedRoutesRecyclerAdapter(var routes: MutableList<RouteEntity>) 
         holder.itemView.setOnClickListener {
             if (id != null) {
                 mainActivity.waypoints.clear()
+                mainActivity.pois.clear()
                 val waypoints = appDatabase.waypointDao().getByRouteID(id)
                 for((i, waypoint) in waypoints.withIndex()) {
                     var wp = Location(
@@ -48,7 +49,9 @@ internal class SavedRoutesRecyclerAdapter(var routes: MutableList<RouteEntity>) 
                     mainActivity.waypoints.add(wp)
                 }
                 val pois = appDatabase.poiDao().getRoutePois(id.toLong())
-                mainActivity.pois = pois
+                for((i, poi) in pois.withIndex()) {
+                    mainActivity.pois.add(poi)
+                }
                 mainActivity.routeId = id.toLong()
                 Toast.makeText(holder.itemView.context, "Route loaded", Toast.LENGTH_SHORT).show()
             }
