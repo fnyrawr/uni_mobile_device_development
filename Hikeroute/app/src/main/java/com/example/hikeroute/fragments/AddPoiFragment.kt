@@ -1,6 +1,14 @@
 package com.example.hikeroute.fragments
 
+import android.Manifest
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +16,16 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.hikeroute.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +38,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class AddPoiFragment : Fragment() {
+
+    private val cameraRequestId = 100
 
     companion object {
         fun newInstance(): AddPoiFragment {
@@ -50,6 +66,15 @@ class AddPoiFragment : Fragment() {
         var buttonClose = view.findViewById<Button>(R.id.buttonClose)
 
         poiTimestamp.text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+
+        if(ContextCompat.checkSelfPermission(mainActivity.applicationContext, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(mainActivity, arrayOf(Manifest.permission.CAMERA), cameraRequestId)
+        }
+
+        buttonPhoto.setOnClickListener {
+            val cameraInt = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cameraInt, cameraRequestId)
+        }
 
         buttonSave.setOnClickListener {
             val saved = savePoi()
@@ -87,6 +112,48 @@ class AddPoiFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == cameraRequestId) {
+            val mediaPath = createNewImageFile(this.requireContext())
+            val image: Bitmap = data?.extras?.get("data") as Bitmap
+            val file = saveBitmapToFile(image, "image/jpg", mediaPath?.absolutePath)
+        }
+    }
+
+    @Throws(IOException::class)
+    fun createNewImageFile(context: Context): File {
+        // Create an image file name
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${timeStamp}_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            absolutePath
+        }
+    }
+
+    fun saveBitmapToFile(bitmap: Bitmap?, mimeType: String, absolutePath: String?): File? {
+        if(absolutePath == null || bitmap == null){
+            return null
+        }
+
+        val file = File(absolutePath)
+        val stream = FileOutputStream(file)
+
+        if (mimeType.contains("jpg", true) || mimeType.contains("jpeg", true))
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+        else if (mimeType.contains("png", true))
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+
+        stream.close()
+
+        return file
     }
 
     fun savePoi(): Boolean {
