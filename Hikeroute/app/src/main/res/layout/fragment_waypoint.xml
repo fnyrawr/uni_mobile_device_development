@@ -14,7 +14,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
-        android:text="Click a waypoint to add a POI"
+        android:text="Waypoints for this Route"
         android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="@color/blue_700" />
